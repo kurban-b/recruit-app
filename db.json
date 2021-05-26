@@ -1,0 +1,47 @@
+{
+  "hrs": [
+    {
+      "id": 1,
+      "login": null,
+      "password": null,
+      "name": "Kurban",
+      "email": "m12345@mail.ru",
+      "phone": "+79991112233",
+      "address": "UK, London",
+      "avatar": null
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "hrsId": 1,
+      "fullName": "Jon Smith",
+      "email": "mail123@mail.ru",
+      "phone": "+41230009988",
+      "address": "UK, London",
+      "avatar": null,
+      "specialty": "ИТ технологии",
+      "company": "General Electrics",
+      "stage": "First interview",
+      "archive": false
+    }
+  ],
+  "interviews": [
+    {
+      "id": 1,
+      "hrsId": 1,
+      "usersId": 1,
+      "date": ""
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "hrsId": 1,
+      "usersId": 1,
+      "title": "Some title",
+      "content": "Here is some text",
+      "date": ""
+    }
+  ]
+}
