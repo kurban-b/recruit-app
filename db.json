@@ -8,28 +8,29 @@
       "email": "m12345@mail.ru",
       "phone": "+79991112233",
       "address": "UK, London",
-      "avatar": null
+      "avatar": null,
+      "companies":
     }
   ],
   "users": [
     {
       "id": 1,
-      "hrsId": 1,
+      "hrId": 1,
       "fullName": "Jon Smith",
       "email": "mail123@mail.ru",
       "phone": "+41230009988",
       "address": "UK, London",
       "avatar": null,
       "specialty": "ИТ технологии",
-      "company": "General Electrics",
-      "stage": "First interview",
+      "companyId": 1,
+      "stageId": 1,
       "archive": false
     }
   ],
   "interviews": [
     {
       "id": 1,
-      "hrsId": 1,
+      "hrId": 1,
       "usersId": 1,
       "date": ""
     }
@@ -37,11 +38,42 @@
   "notes": [
     {
       "id": 1,
-      "hrsId": 1,
+      "hrId": 1,
       "usersId": 1,
       "title": "Some title",
       "content": "Here is some text",
       "date": ""
+    }
+  ],
+  "stages": [
+    {
+      "id": 1,
+      "name": "Первое интервью"
+    },
+    {
+      "id": 2,
+      "name": "Второе интервью"
+    },
+    {
+      "id": 3,
+      "name": "Третье интервью"
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "hrId": 1,
+      "name": "General Electrics"
+    },
+    {
+      "id": 2,
+      "hrId": 1,
+      "name": "Mail Group"
+    },
+    {
+      "id": 3,
+      "hrId": 1,
+      "name": "Yandex"
     }
   ]
 }
