@@ -2,6 +2,7 @@ import React from 'react'
 import Login from './Login/index'
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Route, Switch } from 'react-router-dom'
+import Registration from './Registration'
 
 function Authorization () {
   return (
@@ -26,7 +27,7 @@ function Authorization () {
             <Login />
           </Route>
           <Route exact path='/registration'>
-            тут будет регистрация
+            <Registration />
           </Route>
         </Switch>
 

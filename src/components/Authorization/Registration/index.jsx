@@ -12,7 +12,7 @@ import {
   FormControl,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { AccountCircle, Message, Visibility, VisibilityOff } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Login() {
+function Registration() {
   const classes = useStyles();
 
   const [values, setValues] = useState({
@@ -57,18 +57,18 @@ function Login() {
     <div className={classes.login}>
       <Grid container direction="column" xs="12" justify="center">
         <Typography className={classes.title} component='h3' variant="h5" gutterBottom>
-          Авторизация
+          Регистрация
         </Typography>
-        <TextField
-          className={classes.loginInput}
-          required
-          id="outlined-required"
-          label="Login"
-          variant="outlined"
-        />
+
+        <TextField required id="outlined-basic" label="Имя" variant="outlined" className={classes.loginInput} />
+
+        <TextField required id="outlined-basic" label="Почта" variant="outlined" className={classes.loginInput} type='email'/>
+
+        <TextField required id="outlined-basic" label="Логин" variant="outlined" className={classes.loginInput} />
+
         <FormControl className={classes.loginInput} variant="outlined" required>
           <InputLabel htmlFor="outlined-adornment-password">
-            Password
+            Пароль
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -90,6 +90,31 @@ function Login() {
             labelWidth={70}
           />
         </FormControl>
+        <FormControl className={classes.loginInput} variant="outlined" required>
+          <InputLabel htmlFor="outlined-adornment-password">
+            Павторите пароль
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? "text" : "password"}
+            value={values.password}
+            onChange={handleChange("password")}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        </FormControl>
+
         <Button
           className={classes.loginBtn}
           variant="contained"
@@ -99,12 +124,12 @@ function Login() {
           Войти
         </Button>
         <br/>
-        <Button color="primary" component={Link} to="/registration">
-          Регистрация
+        <Button color="primary" component={Link} to="/">
+          Вернуться к авторизации
         </Button>
       </Grid>
     </div>
   );
 }
 
-export default Login;
+export default Registration;
