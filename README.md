@@ -9,6 +9,7 @@
 | DELETE /clients /id                         | удаление клиента по ID |-|
 | PATCH /clients /id                          | добавление и изменение данных пользователя | |
 | GET /interviews                             | получение списка собеседований |-|
+| POST /interviews                            | добавление собеседования  |userId(Number), clientsId(Number), content (String), date (String) |-|
 | GET /notes?userId={id}                      | получение списка заметок по ID пользователя|-|
 | POST /notes                                 | добавление новой заметки |userId(Number), clientsId(Number), title(String), content (String), date(String)|
 | DELETE /notes /id                           | удаление заметки по ID  |-|
