@@ -4,7 +4,6 @@
 | POST /recruiters                                 | регистрация нового пользователя|login(String), password(String), name(String), email(String) |
 | PATCH /recruiters /id                            | изменение данных пользователя | |
 | GET /clients?recruiterId={id}                    | получение списка клиентов по ID пользователя|-|
-| GET /clients /id                                 | получение клиента по ID |-|
 | POST /clients                                    | добавление нового клиента по ID | recruiterId(number), fullName(String), email (String), specialty (String), companyId(number), stageId(number), archive (Boolean)|
 | DELETE /clients /id                              | удаление клиента по ID |-|
 | PATCH /clients /id                               | изменение данных клиента | |
