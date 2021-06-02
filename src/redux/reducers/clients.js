@@ -2,7 +2,7 @@ const initialState = {
   users: []
 }
 
-export const users = (state = initialState, action) => {
+export const clients = (state = initialState, action) => {
   switch (action.type) {
 
 

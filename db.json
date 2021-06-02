@@ -1,5 +1,5 @@
 {
-  "hrs": [
+  "users": [
     {
       "id": 1,
       "login": null,
@@ -11,10 +11,10 @@
       "avatar": null
     }
   ],
-  "users": [
+  "clients": [
     {
       "id": 1,
-      "hrId": 1,
+      "userId": 1,
       "fullName": "Jon Smith",
       "email": "mail123@mail.ru",
       "phone": "+41230009988",
@@ -29,16 +29,16 @@
   "interviews": [
     {
       "id": 1,
-      "hrId": 1,
-      "usersId": 1,
+      "userId": 1,
+      "clientId": 1,
       "date": ""
     }
   ],
   "notes": [
     {
       "id": 1,
-      "hrId": 1,
-      "usersId": 1,
+      "userId": 1,
+      "clientId": 1,
       "title": "Some title",
       "content": "Here is some text",
       "date": ""
@@ -61,17 +61,17 @@
   "companies": [
     {
       "id": 1,
-      "hrId": 1,
+      "userId": 1,
       "name": "General Electrics"
     },
     {
       "id": 2,
-      "hrId": 1,
+      "userId": 1,
       "name": "Mail Group"
     },
     {
       "id": 3,
-      "hrId": 1,
+      "userId": 1,
       "name": "Yandex"
     }
   ]
