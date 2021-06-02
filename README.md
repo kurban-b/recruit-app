@@ -2,7 +2,7 @@
 | --------------------------------------------|---------------------------| ---------------------------------|
 | GET /recruiters?login={логин}&password={пароль}  | Авторизация |-|
 | POST /recruiters                                 | регистрация нового пользователя|login(String), password(String), name(String), email(String) |
-| PATCH /recruiters /id                            | добавление и изменение данных пользователя | |
+| PATCH /recruiters /id                            | изменение данных пользователя | |
 | GET /clients?recruiterId={id}                    | получение списка клиентов по ID пользователя|-|
 | GET /clients /id                                 | получение клиента по ID |-|
 | POST /clients                                    | добавление нового клиента по ID | recruiterId(number), fullName(String), email (String), specialty (String), companyId(number), stageId(number), archive (Boolean)|
