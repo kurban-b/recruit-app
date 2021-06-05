@@ -1,19 +1,19 @@
 | Адрес                                       | Назначение                | Обязательные значения            |
 | --------------------------------------------|---------------------------| ---------------------------------|
-| GET /recruiters?login={логин}&password={пароль}  | Авторизация |-|
-| POST /recruiters                                 | регистрация нового пользователя|login(String), password(String), name(String), email(String) |
+| POST /auth                                  | Авторизация |login(String), password(String)|
+| POST /recruiters                            | регистрация нового пользователя|login(String), password(String), name(String), email(String) |
 | PATCH /recruiters /id                            | изменение данных пользователя | |
-| GET /clients?recruiterId={id}                    | получение списка клиентов по ID пользователя|-|
-| POST /clients                                    | добавление нового клиента по ID | recruiterId(number), fullName(String), email (String), specialty (String), companyId(number), stageId(number), archive (Boolean)|
+| GET /:id /clients                                | получение списка клиентов по ID пользователя|-|
+| POST /clients                                    | добавление нового клиента | recruiterId(number), fullName(String), email (String), specialty (String), companyId(number)|
 | DELETE /clients /id                              | удаление клиента по ID |-|
 | PATCH /clients /id                               | изменение данных клиента | |
 | GET /interviews                                  | получение списка собеседований |-|
 | POST /interviews                                 | добавление собеседования  |recruiterId(Number), clientsId(Number), date (String) |-|
-| GET /notes?recruiterId={id}                      | получение списка заметок по ID пользователя|-|
-| POST /notes                                      | добавление новой заметки |recruiterId(Number), clientsId(Number), title(String), content (String), date(String)|
+| GET /recruiters/:id/notes                        | получение списка заметок по ID пользователя|-|
+| POST /recruiters/:id/notes                       | добавление новой заметки |clientsId(Number), title(String), content (String)|
 | DELETE /notes /id                                | удаление заметки по ID  |-|
-| GET /companies?recruiterId={id}                  | получение списка компаний по Id пользователя |-|
-| POST /companies /id                              | добавление компаний    |-|
+| GET /companies                                   | получение списка компаний по Id пользователя |header: {id:(Number)}|
+| POST /companies                                  | добавление компаний    |-|
 | DELETE /companies /id                            | удаление компаний    |-|
 | GET /stages                                      | получение списка состояний|-|
 
