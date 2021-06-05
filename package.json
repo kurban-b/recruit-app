@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npm start\" \"json-server --watch db.json --port 3010\"",
+    "dev": "concurrently \"npm start\" \"nodemon server.js\"",
     "prettify": "npx prettier --write ./src"
   },
   "eslintConfig": {
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "json-server": "^0.16.3",
+    "nodemon": "^2.0.7",
     "prettier": "2.3.0"
   }
 }

@@ -25,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
   registration: {
     margin: "auto",
     minHeight: "100vh",
+
+  },
+  registrationBlock: {
+    backgroundColor: "#FFF",
+    padding: '20px 30px',
+    margin: 'auto'
   },
   input: {
     marginBottom: "20px",
@@ -33,13 +39,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     margin: "20px 0",
   },
-  registrationLeft: {
-    backgroundColor: "rgba(0,0,0,.5)",
-    minHeight: "100vh"
-  },
-  registrationRight: {
-    padding: "30px 100px"
-  }
 }));
 
 function Registration() {
@@ -74,11 +73,7 @@ function Registration() {
 
   return (
     <div className={classes.registration}>
-      <Grid container>
-        <Grid md='6' className={classes.registrationLeft}>
-          fff
-        </Grid>
-        <Grid container direction="column" md="6" justify="center" className={classes.registrationRight}>
+        <Grid container direction="column" md="6" justify="center" className={classes.registrationBlock}>
           <Typography
             className={classes.title}
             component="h3"
@@ -174,12 +169,10 @@ function Registration() {
             Регистрация
           </Button>
           <br />
-          <Button color="primary" component={Link} to="/">
+          <Button color="primary" component={Link} to="/auth/login">
             Вернуться к авторизации
           </Button>
         </Grid>
-      </Grid>
-
     </div>
   );
 }

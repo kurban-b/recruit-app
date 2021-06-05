@@ -57,7 +57,7 @@ function Login() {
 
 
   return (
-    <div className={`${classes.login} login`}>
+    <div className={classes.login}>
         <Grid container md="6" direction="column" className={classes.loginBlock}>
           <Typography className={classes.title} component='h3' variant="h5" gutterBottom>
             Авторизация
@@ -104,7 +104,7 @@ function Login() {
             Войти
           </Button>
           <br/>
-          <Button color="primary" component={Link} to="/registration">
+          <Button color="primary" component={Link} to="/auth/registration">
             Регистрация
           </Button>
         </Grid>

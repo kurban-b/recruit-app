@@ -1,26 +1,68 @@
 {
-  "users": [
+  "recruiters": [
     {
       "id": 1,
-      "login": null,
-      "password": null,
+      "login": "admin",
+      "password": "admin",
       "name": "Kurban",
       "email": "m12345@mail.ru",
       "phone": "+79991112233",
       "address": "UK, London",
       "avatar": null
+    },
+    {
+      "phone": null,
+      "address": null,
+      "avatar": null,
+      "id": 2
+    },
+    {
+      "login": "admin1",
+      "password": "admin",
+      "name": "Kurban",
+      "email": "m12345@mail.ru",
+      "phone": null,
+      "address": null,
+      "avatar": null,
+      "id": 3
     }
   ],
   "clients": [
     {
       "id": 1,
-      "userId": 1,
-      "fullName": "Jon Smith",
-      "email": "mail123@mail.ru",
+      "recruiterId": 1,
+      "fullName": "Джон Сноу",
+      "email": "king-of-the-north@mail.ru",
       "phone": "+41230009988",
-      "address": "UK, London",
+      "address": "Вестерос, Север, Черный замок",
       "avatar": null,
       "specialty": "ИТ технологии",
+      "companyId": 1,
+      "stageId": 1,
+      "archive": false
+    },
+    {
+      "id": 2,
+      "recruiterId": 1,
+      "fullName": "Дейнерис Таргариен",
+      "email": "queen-of-the-seven-kingdoms@mail.ru",
+      "phone": "+49990001122",
+      "address": "Вестерос, Драконий камень",
+      "avatar": null,
+      "specialty": "Маркетинг",
+      "companyId": 1,
+      "stageId": 1,
+      "archive": false
+    },
+    {
+      "id": 3,
+      "recruiterId": 1,
+      "fullName": "Джейми Ланнистер",
+      "email": "house-of-lannisters@mail.ru",
+      "phone": "+47773332211",
+      "address": "Вестерос, Утес Кастерли",
+      "avatar": null,
+      "specialty": "Менеджмент",
       "companyId": 1,
       "stageId": 1,
       "archive": false
@@ -29,7 +71,7 @@
   "interviews": [
     {
       "id": 1,
-      "userId": 1,
+      "recruiterId": 1,
       "clientId": 1,
       "date": ""
     }
@@ -37,7 +79,7 @@
   "notes": [
     {
       "id": 1,
-      "userId": 1,
+      "recruiterId": 1,
       "clientId": 1,
       "title": "Some title",
       "content": "Here is some text",
@@ -61,17 +103,17 @@
   "companies": [
     {
       "id": 1,
-      "userId": 1,
+      "recruiterId": 1,
       "name": "General Electrics"
     },
     {
       "id": 2,
-      "userId": 1,
+      "recruiterId": 1,
       "name": "Mail Group"
     },
     {
       "id": 3,
-      "userId": 1,
+      "recruiterId": 1,
       "name": "Yandex"
     }
   ]

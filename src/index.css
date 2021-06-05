@@ -10,10 +10,10 @@ a {
   text-decoration: none;
 }
 
-.login {
+.auth {
   background: linear-gradient(232deg, #56eb29, #f65757);
   background-size: 400% 400%;
-  height: 100vh;
+  min-height: 100vh;
   padding: 30px;
   -webkit-animation: animateBGcolor 6s ease infinite;
   -moz-animation: animateBGcolor 6s ease infinite;
