@@ -9,7 +9,7 @@
 | PATCH /clients /id                          | изменение данных клиента |-|
 | GET /interviews                             | получение списка собеседований |headers: {token: String}|
 | POST /interviews                            | добавление собеседования  |recruiterId(Number), clientsId(Number), date (String) |-|
-| GET /notes                                  | получение списка заметок |-|
+| GET /notes                                  | получение списка заметок |headers: {token: String}|
 | POST /notes                                 | добавление новой заметки |clientsId(Number), title(String), content (String)|
 | DELETE /notes /id                           | удаление заметки по ID |-|
 | GET /companies                              | получение списка компаний |-|
