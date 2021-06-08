@@ -12,7 +12,7 @@
 | GET /notes                                  | получение списка заметок |headers: {token: String}|
 | POST /notes                                 | добавление новой заметки |clientsId(Number), title(String), content (String)|
 | DELETE /notes /id                           | удаление заметки по ID |-|
-| GET /companies                              | получение списка компаний |-|
+| GET /companies                              | получение списка компаний |headers: {token: String}|
 | POST /companies                             | добавление компаний    |-|
 | DELETE /companies /id                       | удаление компаний    |-|
 | GET /stages                                 | получение списка состояний|-|
