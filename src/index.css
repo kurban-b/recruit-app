@@ -10,28 +10,32 @@ a {
   text-decoration: none;
 }
 
-.auth {
-  background: linear-gradient(232deg, #56eb29, #f65757);
-  background-size: 400% 400%;
-  min-height: 100vh;
-  padding: 30px;
-  -webkit-animation: animateBGcolor 6s ease infinite;
-  -moz-animation: animateBGcolor 6s ease infinite;
-  animation: animateBGcolor 6s ease infinite;
-}
+/*.auth {*/
+/*  background: linear-gradient(232deg, #56eb29, #f65757);*/
+/*  background-size: 400% 400%;*/
+/*  min-height: 100vh;*/
+/*  padding: 30px;*/
+/*  -webkit-animation: animateBGcolor 6s ease infinite;*/
+/*  -moz-animation: animateBGcolor 6s ease infinite;*/
+/*  animation: animateBGcolor 6s ease infinite;*/
+/*}*/
 
-@-webkit-keyframes animateBGcolor {
-  0%{background-position:0% 48%}
-  50%{background-position:100% 53%}
-  100%{background-position:0% 48%}
-}
-@-moz-keyframes animateBGcolor {
-  0%{background-position:0% 48%}
-  50%{background-position:100% 53%}
-  100%{background-position:0% 48%}
-}
-@keyframes animateBGcolor {
-  0%{background-position:0% 48%}
-  50%{background-position:100% 53%}
-  100%{background-position:0% 48%}
+/*@-webkit-keyframes animateBGcolor {*/
+/*  0%{background-position:0% 48%}*/
+/*  50%{background-position:100% 53%}*/
+/*  100%{background-position:0% 48%}*/
+/*}*/
+/*@-moz-keyframes animateBGcolor {*/
+/*  0%{background-position:0% 48%}*/
+/*  50%{background-position:100% 53%}*/
+/*  100%{background-position:0% 48%}*/
+/*}*/
+/*@keyframes animateBGcolor {*/
+/*  0%{background-position:0% 48%}*/
+/*  50%{background-position:100% 53%}*/
+/*  100%{background-position:0% 48%}*/
+/*}*/
+
+input[type = email]:invalid {
+  color: #f65757;
 }

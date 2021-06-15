@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger/src";
 import { application } from "./reducers/application";
-import { recruiters } from "./reducers/recruiters";
+import { auth } from "./reducers/auth";
 import { clients } from "./reducers/clients";
 
 const logger = createLogger({
@@ -11,6 +11,6 @@ const logger = createLogger({
 });
 
 export const store = createStore(
-  combineReducers({ application, recruiters, clients }),
+  combineReducers({ application, auth, clients }),
   applyMiddleware(thunk, logger)
 );

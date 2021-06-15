@@ -1,10 +1,42 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import Clients from './Clients/index'
+import React, { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
+import Clients from "./Clients/index";
+import { makeStyles } from "@material-ui/core";
+import Account from "../Account/index";
+import { useDispatch, useSelector } from 'react-redux'
+import { selectRecruter, tokenSelector } from '../../redux/selectors/auth'
+import Profile from "./Profile/index";
+import { loadingClients } from '../../redux/actions/clients'
+import { loadingCompanies, loadingInterviews, loadingStages } from '../../redux/actions/application'
 
-function Main () {
+const useStyes = makeStyles((theme) => ({
+  main: {
+    padding: "80px 20px 0 20px",
+  },
+}));
+
+function Main() {
+  const dispatch = useDispatch();
+  const classes = useStyes();
+
+  const load = useSelector((state) => state.clients.loading);
+
+  const recruter = useSelector(selectRecruter);
+
+  const token = useSelector(tokenSelector);
+
+  useEffect(() => {
+    dispatch(loadingClients(token));
+    dispatch(loadingCompanies(token));
+    dispatch(loadingStages());
+    dispatch(loadingInterviews(token));
+  }, [dispatch, token]);
+
+  const clients = useSelector((state) => state.clients.clients);
+  console.log(clients);
+
   return (
-    <div>
+    <div className={classes.main}>
       <Switch>
         <Route exact path={"/dashboard/users"}>
           <Clients />
@@ -15,9 +47,15 @@ function Main () {
         <Route exact path={"/dashboard/interviews"}>
           interviews
         </Route>
+        <Route exact path={"/dashboard/account/:path2_?"}>
+          <Account person={recruter} />
+        </Route>
+        <Route exact path={"/dashboard/profile/:id_?"}>
+          {load ? null : <Profile clients={clients} />}
+        </Route>
       </Switch>
     </div>
-  )
+  );
 }
 
-export default Main
+export default Main;

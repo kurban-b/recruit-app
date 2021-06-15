@@ -4,27 +4,25 @@
       "id": 1,
       "login": "admin",
       "password": "admin",
-      "name": "Kurban",
+      "firstName": "Kurban",
+      "lastName": "Buev",
       "email": "m12345@mail.ru",
       "phone": "+79991112233",
       "address": "UK, London",
-      "avatar": null
+      "avatar": null,
+      "token": "nrOSsjOyrMWxcexUpJkp4D83en8zVSdhwrt7iyE7nSrxVYYg41Dso1Q7mRBHR1czMLuBQgbh2aqYezVmJNS3nJNoT5MFVl7kRXn0"
     },
     {
+      "firstName": "фывыва",
+      "lastName": "выаыв",
+      "email": "а",
+      "login": "",
+      "password": "",
       "phone": null,
       "address": null,
       "avatar": null,
+      "token": "lzLhU7MDuiXkK9Mf2hynwe30ec7T0jxcOdbdJIJWIq5Mr7xJfGUQqa0nMH8SMl7Hdcin1O7FAdbvClclX5h5VYsdEGpy4RNp3C95",
       "id": 2
-    },
-    {
-      "login": "admin1",
-      "password": "admin",
-      "name": "Kurban",
-      "email": "m12345@mail.ru",
-      "phone": null,
-      "address": null,
-      "avatar": null,
-      "id": 3
     }
   ],
   "clients": [
@@ -38,7 +36,7 @@
       "avatar": null,
       "specialty": "ИТ технологии",
       "companyId": 1,
-      "stageId": 1,
+      "stageId": 3,
       "archive": false
     },
     {
@@ -50,8 +48,8 @@
       "address": "Вестерос, Драконий камень",
       "avatar": null,
       "specialty": "Маркетинг",
-      "companyId": 1,
-      "stageId": 1,
+      "companyId": 3,
+      "stageId": 2,
       "archive": false
     },
     {
@@ -63,7 +61,33 @@
       "address": "Вестерос, Утес Кастерли",
       "avatar": null,
       "specialty": "Менеджмент",
+      "companyId": 2,
+      "stageId": 1,
+      "archive": false
+    },
+    {
+      "id": 4,
+      "recruiterId": 1,
+      "fullName": "Серсея Ланнистер",
+      "email": "lannisters@mail.ru",
+      "phone": "+49990003212",
+      "address": "Вестерос, Драконий камень",
+      "avatar": null,
+      "specialty": "Маркетинг",
       "companyId": 1,
+      "stageId": 2,
+      "archive": false
+    },
+    {
+      "id": 5,
+      "recruiterId": 1,
+      "fullName": "Грегор Клиган",
+      "email": "house-of-kligans@mail.ru",
+      "phone": "+47772221121",
+      "address": "Вестерос, Утес Кастерли",
+      "avatar": null,
+      "specialty": "Менеджмент",
+      "companyId": 2,
       "stageId": 1,
       "archive": false
     }
@@ -89,15 +113,15 @@
   "stages": [
     {
       "id": 1,
-      "name": "Первое интервью"
+      "name": "Расмотрение"
     },
     {
       "id": 2,
-      "name": "Второе интервью"
+      "name": "Одобрен"
     },
     {
       "id": 3,
-      "name": "Третье интервью"
+      "name": "Собеседование"
     }
   ],
   "companies": [
