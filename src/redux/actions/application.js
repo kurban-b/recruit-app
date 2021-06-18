@@ -58,3 +58,25 @@ export const loadingInterviews = (token) => {
       })
   }
 }
+
+export const loadingNotes = (token) => {
+  return dispatch => {
+    dispatch({
+      type: "notes/load/start",
+    })
+
+    fetch('http://localhost:5000/notes', {
+      method: 'GET',
+        headers: {
+        "token": token
+      }
+    })
+      .then(res => res.json())
+      .then(json => {
+        dispatch({
+          type: 'notes/load/success',
+          payload: json
+        })
+      })
+  }
+}

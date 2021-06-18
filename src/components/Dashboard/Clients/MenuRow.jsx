@@ -10,6 +10,9 @@ import {
   Typography
 } from '@material-ui/core'
 import { Archive, Delete, MoreVert, Settings, Star } from '@material-ui/icons'
+import { useSelector } from 'react-redux'
+import { clientsSelector } from '../../../redux/selectors'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +26,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function MenuRow () {
+function MenuRow ({clientId}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const clients = useSelector(clientsSelector)
+
+  const client = clients.find(item => item.id === clientId)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -58,12 +65,15 @@ function MenuRow () {
         }}
       >
         <List component="nav" className={classes.root}>
-          <ListItem button className={classes.icon} >
-            <ListItemIcon>
-              <Settings />
-            </ListItemIcon>
-            <ListItemText secondary="Редактировать" className={classes.text}/>
-          </ListItem>
+            <Link to={`/dashboard/profile/${client.id}`}>
+              <ListItem button className={classes.icon} >
+                <ListItemIcon>
+                  <Settings />
+                </ListItemIcon>
+                <ListItemText secondary="Редактировать" className={classes.text}/>
+              </ListItem>
+            </Link>
+
           <ListItem button className={classes.icon}>
             <ListItemIcon>
               <Archive />
@@ -76,7 +86,6 @@ function MenuRow () {
             </ListItemIcon>
             <ListItemText secondary="Удалить" className={classes.text}/>
           </ListItem>
-
         </List>
       </Popover>
     </div>

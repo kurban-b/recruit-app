@@ -2,13 +2,15 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import {
   Card,
-  CardContent,
+  CardContent, Chip,
   Grid,
   makeStyles,
   Typography,
-} from "@material-ui/core";
+} from '@material-ui/core'
 import AvatarOfAccount from "../../Account/AvatarOfAccount";
 import ProfileInfo from './ProfileInfo'
+import { useSelector } from 'react-redux'
+import { stagesSelector } from '../../../redux/selectors'
 
 const useStyes = makeStyles((theme) => ({
   avatarCard: {
@@ -17,6 +19,11 @@ const useStyes = makeStyles((theme) => ({
   info: {
     padding: "20px",
   },
+  chipBox: {
+    display: 'flex',
+    justifyContent: "flex-end",
+    width: '100%'
+  }
 }));
 
 function Profile({ clients }) {
@@ -24,11 +31,9 @@ function Profile({ clients }) {
 
   const id = useParams().id_;
 
-  console.log(Number(id))
-
-
   const client = clients.find((item) => item.id === Number(id));
-  console.log(client)
+
+  const stage = useSelector(stagesSelector).find(item => item.id === client.stageId)
 
   return (
     <div>
@@ -41,6 +46,18 @@ function Profile({ clients }) {
         <Grid item md={4}>
           <Card className={classes.avatarCard}>
             <CardContent>
+              <div className={classes.chipBox}>
+                <Chip
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end"
+                  }}
+                  size="small"
+                  label={stage.name}
+                  color={'primary'}
+                  variant="default"
+                />
+              </div>
               <AvatarOfAccount client={client} />
             </CardContent>
           </Card>

@@ -76,7 +76,7 @@ const columns = [
     sortable: false,
     renderCell: (params) => {
       return (
-        <MenuRow />
+        <MenuRow clientId={params.row.id}/>
       );
     },
   },

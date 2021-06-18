@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectRecruter, tokenSelector } from '../../redux/selectors/auth'
 import Profile from "./Profile/index";
 import { loadingClients } from '../../redux/actions/clients'
-import { loadingCompanies, loadingInterviews, loadingStages } from '../../redux/actions/application'
+import { loadingCompanies, loadingInterviews, loadingNotes, loadingStages } from '../../redux/actions/application'
+import Notes from './Notes/index'
+import Interviews from './Interviews/index'
 
 const useStyes = makeStyles((theme) => ({
   main: {
@@ -27,13 +29,13 @@ function Main() {
 
   useEffect(() => {
     dispatch(loadingClients(token));
+    dispatch(loadingNotes(token));
     dispatch(loadingCompanies(token));
     dispatch(loadingStages());
     dispatch(loadingInterviews(token));
   }, [dispatch, token]);
 
   const clients = useSelector((state) => state.clients.clients);
-  console.log(clients);
 
   return (
     <div className={classes.main}>
@@ -42,10 +44,10 @@ function Main() {
           <Clients />
         </Route>
         <Route exact path={"/dashboard/nodes"}>
-          nodes
+          <Notes />
         </Route>
         <Route exact path={"/dashboard/interviews"}>
-          interviews
+          <Interviews />
         </Route>
         <Route exact path={"/dashboard/account/:path2_?"}>
           <Account person={recruter} />

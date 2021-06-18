@@ -127,6 +127,9 @@ function Login() {
                 labelWidth={70}
               />
             </FormControl>
+            <Alert severity="info" color="info">
+              Login: admin, Password: admin
+            </Alert>
             <FormControlLabel
               control={
                 <Checkbox

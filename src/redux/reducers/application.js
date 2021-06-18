@@ -42,6 +42,18 @@ export const application = (state = initialState, action) => {
         interviews: action.payload
       }
 
+    case 'notes/load/start':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'notes/load/success':
+      return {
+        ...state,
+        loading: false,
+        notes: action.payload
+      }
+
     default:
       return state;
   }

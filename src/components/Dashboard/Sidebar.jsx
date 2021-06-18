@@ -1,27 +1,28 @@
-import React, { useState } from 'react'
+import React from "react";
 import {
-  Avatar, Collapse,
+  Avatar,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   makeStyles,
   Typography,
-} from '@material-ui/core'
+} from "@material-ui/core";
 import GroupIcon from "@material-ui/icons/Group";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 import TodayIcon from "@material-ui/icons/Today";
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectRecruter } from "../../redux/selectors";
-import { AccountBoxRounded, ExpandLess, ExpandMore, Inbox } from '@material-ui/icons'
+import { selectRecruter, stagesSelector } from '../../redux/selectors'
 
 const useStyes = makeStyles((theme) => ({
   sidebar: {
     borderRight: "1.2px solid rgba(200,200,200,.4)",
     minHeight: "100vh",
     padding: "20px 0",
+    position: 'fixed',
+    width: '25%'
   },
   profile: {
     backgroundColor: "rgba(186,186,186,0.21)",
@@ -49,22 +50,12 @@ const useStyes = makeStyles((theme) => ({
   icon: {
     marginLeft: "15px",
   },
-  iconDrop: {
-    marginLeft: "25px"
-  },
-  opened: {
-    backgroundColor: "rgba(232,232,232,0.41)"
-  }
 }));
 
 function Sidebar() {
   const recruiter = useSelector(selectRecruter);
 
-  const [open, setOpen] = useState(false)
 
-  const handleClick = () => {
-    setOpen(!open)
-  }
 
   const classes = useStyes();
 
@@ -84,40 +75,15 @@ function Sidebar() {
       </Link>
 
       <div className={classes.list}>
-
-
         <List component="nav" aria-label="main mailbox folders">
-          <ListItem button onClick={handleClick} className={open ? classes.opened : null}>
-            <ListItemIcon className={classes.icon}>
-              <Inbox />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <NavLink to="/dashboard/account" activeClassName={classes.active}>
-                <ListItem button>
-                  <ListItemIcon className={classes.iconDrop}>
-                    <AccountBoxRounded />
-                  </ListItemIcon>
-                  <ListItemText primary="Профиль" />
-                </ListItem>
-              </NavLink>
-              <NavLink to="/dashboard/users" activeClassName={classes.active}>
-                <ListItem button>
-                  <ListItemIcon className={classes.iconDrop}>
-                    <GroupIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Работники" />
-                </ListItem>
-              </NavLink>
-            </List>
-          </Collapse>
-
-
-
+          <NavLink to="/dashboard/users" activeClassName={classes.active}>
+            <ListItem button>
+              <ListItemIcon className={classes.icon}>
+                <GroupIcon />
+              </ListItemIcon>
+              <ListItemText primary="Соискатели" />
+            </ListItem>
+          </NavLink>
           <NavLink to="/dashboard/nodes" activeClassName={classes.active}>
             <ListItem button>
               <ListItemIcon className={classes.icon}>
