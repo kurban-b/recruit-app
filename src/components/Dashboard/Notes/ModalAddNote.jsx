@@ -44,6 +44,9 @@ const useStayes = makeStyles(() => ({
     display: "flex",
     justifyContent: "flex-end",
   },
+  error: {
+    marginBottom: '5px'
+  }
 }));
 
 function ModalAddNote({ clients, id, modalClose}) {

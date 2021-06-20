@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { PhotoCamera } from "@material-ui/icons";
 

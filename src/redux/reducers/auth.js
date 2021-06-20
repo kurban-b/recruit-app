@@ -2,6 +2,7 @@ const initialState = {
   recruiter: JSON.parse(localStorage.getItem("user")) || {},
   loadingLogin: false,
   loadingRegistration: false,
+  loadingChanges: false,
   error: false
 };
 
@@ -43,6 +44,20 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         recruiter: {}
+      }
+    case "recruiters/change/start":
+      return {
+        ...state,
+        loadingChanges: true
+      }
+    case "recruiters/change/success":
+      if (localStorage.getItem('user') !== undefined) {
+        localStorage.setItem("user", JSON.stringify(action.payload))
+      }
+      return {
+        ...state,
+        loadingChanges: false,
+        recruiter: action.payload
       }
     default:
       return state;

@@ -1,6 +1,10 @@
-import React from 'react'
-import { Button, Card, CardContent, IconButton, makeStyles, TextField, Typography } from '@material-ui/core'
-import { Add, Save } from '@material-ui/icons'
+import React, { useState } from 'react'
+import { Button, Card, CardContent, makeStyles, TextField, Typography } from '@material-ui/core'
+import { Add } from '@material-ui/icons'
+import { useDispatch, useSelector } from 'react-redux'
+import { Alert } from '@material-ui/lab'
+import { recruterSelector } from '../../redux/selectors/auth'
+import { addNewCompany } from '../../redux/actions/companies'
 
 const useStyles = makeStyles(()=>({
   title: {
@@ -13,11 +17,36 @@ const useStyles = makeStyles(()=>({
   },
   input: {
     width: "100%"
+  },
+  error: {
+    margin: '20px 0'
   }
 }))
 
-function ModalAddCompany (props) {
+function ModalAddCompany ({modalClose}) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const recruiter = useSelector(recruterSelector)
+
+  const [value, setValue] = useState({
+    company: '',
+    error: false
+  })
+
+  const handleChangeCompany = (prop) => (event) => {
+    setValue({...value, [prop]:event.target.value})
+  }
+
+  const handleAddCompany = () => {
+    setValue({...value, error: false})
+    if (value.company === '') {
+      setValue({...value, error: true})
+      return null
+    }
+    dispatch(addNewCompany(value.company, recruiter.id))
+    modalClose(false)
+  }
 
   return (
     <div>
@@ -31,13 +60,22 @@ function ModalAddCompany (props) {
             label="Наименование"
             variant="outlined"
             className={classes.input}
+            value={value.company}
+            onChange={handleChangeCompany('company')}
           />
+          {
+            value.error &&
+            <Alert severity="warning" className={classes.error}>
+              Заполните поле наименования компании!
+            </Alert>
+          }
           <div className={classes.buttonWrap}>
             <Button
               variant="contained"
               color="secondary"
               className={classes.button}
               startIcon={<Add />}
+              onClick={handleAddCompany}
             >
               Добавить
             </Button>

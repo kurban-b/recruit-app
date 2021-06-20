@@ -16,6 +16,28 @@ export const companiesReducer = (state = initialState, action) => {
         loading: false,
         companies: action.payload
       }
+    case 'companies/add/start':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'companies/add/success':
+      return {
+        ...state,
+        loading: false,
+        companies: [...state.companies, action.payload]
+      }
+    case 'companies/delete/start':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'companies/delete/success':
+      return {
+        ...state,
+        loading: false,
+        companies: state.companies.filter(company => company.id !== action.payload)
+      }
     default :
       return state
   }

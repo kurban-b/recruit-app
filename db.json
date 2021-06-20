@@ -4,8 +4,8 @@
       "id": 1,
       "login": "admin",
       "password": "admin",
-      "firstName": "Kurban",
-      "lastName": "Buev",
+      "firstName": "Курбан",
+      "lastName": "Буев",
       "email": "m12345@mail.ru",
       "phone": "+79991112233",
       "address": "UK, London",
@@ -133,14 +133,6 @@
       "date": "2021-06-20T12:25:05.442Z",
       "recruiterId": 1,
       "id": 3
-    },
-    {
-      "title": "ekfejrioferojfioerjfioer",
-      "content": "kfkerkflerjklfnlkernfjkernjkfnerjkfnjkernfjkernjfknerjkfn",
-      "clientId": 5,
-      "date": "2021-06-20T13:22:31.833Z",
-      "recruiterId": 1,
-      "id": 4
     }
   ],
   "stages": [
@@ -172,6 +164,11 @@
       "id": 3,
       "recruiterId": 1,
       "name": "Yandex"
+    },
+    {
+      "name": "Amazon",
+      "recruiterId": 1,
+      "id": 4
     }
   ]
 }

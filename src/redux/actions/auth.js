@@ -67,3 +67,32 @@ export const logout = () => {
     type: "auth/logout"
   }
 }
+
+export const saveChangesAccaunt = (id, login, firstName, lastName, email, phone, address) => {
+
+  return dispatch => {
+    dispatch({
+      type: 'recruiters/change/start'
+    })
+
+    fetch(`http://localhost:5000/recruiters/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        login: login,
+        phone: phone,
+        address: address
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        dispatch({
+          type: 'recruiters/change/success',
+          payload: json
+        })
+      })
+  }
+}

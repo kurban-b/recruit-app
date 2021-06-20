@@ -11,6 +11,8 @@ import {
 } from '@material-ui/core'
 import { Add, Delete } from '@material-ui/icons'
 import ModalAddCompany from './ModalAddCompany'
+import { useDispatch } from 'react-redux'
+import { deleteCompany } from '../../redux/actions/companies'
 
 const useStyles = makeStyles(()=>({
   companies: {
@@ -23,6 +25,8 @@ const useStyles = makeStyles(()=>({
 function CompaniesList ({companies}) {
   const classes = useStyles();
 
+  const dispatch = useDispatch()
+
   const [open, setOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -33,6 +37,10 @@ function CompaniesList ({companies}) {
     setOpen(false)
   }
 
+  const handleDelete = (id) => () => {
+    dispatch(deleteCompany(id))
+  }
+
   return (
     <div>
       <Typography variant="h6" component="h3">
@@ -40,15 +48,15 @@ function CompaniesList ({companies}) {
       </Typography>
       <div className={classes.companies}>
         <List>
-          {companies.map(company => {
+          {companies.map((company, index)=> {
             return (
               <>
-                <ListItem>
+                <ListItem key={index}>
                   <ListItemText
                     primary={company.name}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete">
+                    <IconButton edge="end" aria-label="delete" onClick={handleDelete(company.id)}>
                       <Delete />
                     </IconButton>
                   </ListItemSecondaryAction>
@@ -60,7 +68,7 @@ function CompaniesList ({companies}) {
           <ListItem autoFocus button onClick={handleModalOpen}>
             <ListItemAvatar>
               <Avatar>
-                <Add />
+                <Add fontSize='small'/>
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Добавить новую компанию" />
@@ -68,7 +76,7 @@ function CompaniesList ({companies}) {
           <Divider/>
         </List>
         <Dialog open={open} onClose={handleModalClose} >
-          <ModalAddCompany />
+          <ModalAddCompany modalClose={setOpen}/>
         </Dialog>
       </div>
     </div>
