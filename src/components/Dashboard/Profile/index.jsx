@@ -10,7 +10,7 @@ import {
 import AvatarOfAccount from "../../Account/AvatarOfAccount";
 import ProfileInfo from './ProfileInfo'
 import { useSelector } from 'react-redux'
-import { stagesSelector } from '../../../redux/selectors'
+import { stagesSelector } from '../../../redux/selectors/stages'
 
 const useStyes = makeStyles((theme) => ({
   avatarCard: {
@@ -66,7 +66,6 @@ function Profile({ clients }) {
           <Card className={classes.info}>
             <CardContent>
               {client !== undefined && <ProfileInfo client={client} />}
-
             </CardContent>
           </Card>
         </Grid>

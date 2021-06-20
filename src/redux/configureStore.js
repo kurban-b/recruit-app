@@ -1,9 +1,13 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger/src";
-import { application } from "./reducers/application";
-import { auth } from "./reducers/auth";
-import { clients } from "./reducers/clients";
+import { applicationReducer } from "./reducers/application";
+import { authReducer } from "./reducers/auth";
+import { clientsReducer } from "./reducers/clients";
+import { companiesReducer } from "./reducers/companies";
+import { interviewsReducer } from "./reducers/interviews";
+import { notesReducer } from "./reducers/notes";
+import { stagesReducer } from "./reducers/stages";
 
 const logger = createLogger({
   diff: true,
@@ -11,6 +15,14 @@ const logger = createLogger({
 });
 
 export const store = createStore(
-  combineReducers({ application, auth, clients }),
+  combineReducers({
+    applicationReducer,
+    authReducer,
+    clientsReducer,
+    companiesReducer,
+    interviewsReducer,
+    notesReducer,
+    stagesReducer,
+  }),
   applyMiddleware(thunk, logger)
 );

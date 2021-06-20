@@ -5,7 +5,7 @@ const initialState = {
   error: false
 };
 
-export const auth = (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "auth/login/start":
       return {
@@ -37,6 +37,12 @@ export const auth = (state = initialState, action) => {
         ...state,
         loadingRegistration: false,
         recruiter: action.payload
+      }
+    case "auth/logout":
+      localStorage.removeItem('user')
+      return {
+        ...state,
+        recruiter: {}
       }
     default:
       return state;

@@ -7,11 +7,12 @@ import {
   ListItemIcon,
   ListItemText,
   makeStyles,
-  Popover,
-  Typography
+  Popover
 } from '@material-ui/core'
-import { AccountCircle, ExitToApp, MoreVert, Star } from '@material-ui/icons'
+import { AccountCircle, ExitToApp } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../redux/actions/auth'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AvatarMenu () {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -36,6 +38,10 @@ function AvatarMenu () {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -68,13 +74,12 @@ function AvatarMenu () {
               <ListItemText secondary="Профиль" className={classes.text}/>
               </ListItem>
             </Link>
-          <ListItem button >
+          <ListItem button  onClick={handleLogout}>
             <ListItemIcon className={classes.icon}>
               <ExitToApp />
             </ListItemIcon>
             <ListItemText secondary="Выход" className={classes.text}/>
           </ListItem>
-
         </List>
       </Popover>
     </div>

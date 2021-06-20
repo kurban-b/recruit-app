@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   IconButton,
   List,
@@ -7,32 +7,32 @@ import {
   ListItemText,
   makeStyles,
   Popover,
-  Typography
-} from '@material-ui/core'
-import { Archive, Delete, MoreVert, Settings, Star } from '@material-ui/icons'
-import { useSelector } from 'react-redux'
-import { clientsSelector } from '../../../redux/selectors'
-import { Link } from 'react-router-dom'
+} from "@material-ui/core";
+import { Archive, Delete, MoreVert, Settings, Unarchive } from '@material-ui/icons'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from "react-router-dom";
+import { clientsSelector } from "../../../redux/selectors/clients";
+import { deleteClient, toggleArchive } from '../../../redux/actions/clients'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 200
+    width: 200,
   },
-  icon: {
-
-  },
+  icon: {},
   text: {
-    fontSize: "14px"
-  }
+    fontSize: "14px",
+  },
 }));
 
-function MenuRow ({clientId}) {
+function MenuRow({ clientId, archive}) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const clients = useSelector(clientsSelector)
+  const clients = useSelector(clientsSelector);
 
-  const client = clients.find(item => item.id === clientId)
+  const client = clients.find((item) => item.id === clientId);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -42,8 +42,16 @@ function MenuRow ({clientId}) {
     setAnchorEl(null);
   };
 
+  const handleDelete = () => {
+    dispatch(deleteClient(clientId))
+  }
+
+  const handleArchive = () => {
+    dispatch(toggleArchive(clientId, archive))
+  }
+
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const id = open ? "simple-popover" : undefined;
 
   return (
     <div>
@@ -56,40 +64,52 @@ function MenuRow ({clientId}) {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
+          vertical: "bottom",
+          horizontal: "center",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          vertical: "top",
+          horizontal: "center",
         }}
       >
         <List component="nav" className={classes.root}>
-            <Link to={`/dashboard/profile/${client.id}`}>
-              <ListItem button className={classes.icon} >
+          <Link to={`/dashboard/profile/${client !== undefined && client.id}`}>
+            <ListItem button className={classes.icon}>
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
+              <ListItemText
+                secondary="Редактировать"
+                className={classes.text}
+              />
+            </ListItem>
+          </Link>
+          {
+            archive ?
+              <ListItem button className={classes.icon} onClick={handleArchive}>
                 <ListItemIcon>
-                  <Settings />
+                  <Unarchive />
                 </ListItemIcon>
-                <ListItemText secondary="Редактировать" className={classes.text}/>
+                <ListItemText secondary="Изъять из архива" className={classes.text} />
               </ListItem>
-            </Link>
-
-          <ListItem button className={classes.icon}>
-            <ListItemIcon>
-              <Archive />
-            </ListItemIcon>
-            <ListItemText secondary="В архив" className={classes.text}/>
-          </ListItem>
-          <ListItem button className={classes.icon}>
+              :
+              <ListItem button className={classes.icon} onClick={handleArchive}>
+                <ListItemIcon>
+                  <Archive />
+                </ListItemIcon>
+                <ListItemText secondary="В архив" className={classes.text} />
+              </ListItem>
+          }
+          <ListItem button className={classes.icon} onClick={handleDelete}>
             <ListItemIcon>
               <Delete />
             </ListItemIcon>
-            <ListItemText secondary="Удалить" className={classes.text}/>
+            <ListItemText secondary="Удалить" className={classes.text} />
           </ListItem>
         </List>
       </Popover>
     </div>
-  )
+  );
 }
 
-export default MenuRow
+export default MenuRow;

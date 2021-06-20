@@ -12,7 +12,8 @@ import {
 } from '@material-ui/core'
 import { Add, Delete, Folder, Save } from '@material-ui/icons'
 import { useSelector } from 'react-redux'
-import { companiesSelector } from '../../redux/selectors'
+import { companiesSelector } from '../../redux/selectors/companies'
+import CompaniesList from './CompaniesList'
 
 const useStyes = makeStyles((theme) => ({
   input: {
@@ -82,39 +83,7 @@ function InfoAccount({ person }) {
 
       </Grid>
       <Grid item md={12}>
-        <Typography variant="h6" component="h3">
-          Компании
-        </Typography>
-        <div className={classes.companies}>
-          <List>
-            {companies.map(company => {
-              return (
-                <>
-                  <ListItem>
-                    <ListItemText
-                      primary={company.name}
-                    />
-                    <ListItemSecondaryAction>
-                      <IconButton edge="end" aria-label="delete">
-                        <Delete />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <Divider/>
-                </>
-              )
-            })}
-            <ListItem autoFocus button>
-              <ListItemAvatar>
-                <Avatar>
-                  <Add />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Добавить новую компанию" />
-            </ListItem>
-            <Divider/>
-          </List>
-        </div>
+        <CompaniesList companies={companies} />
         <Button variant="contained" color="secondary" startIcon={<Save />}>
           Сохранить
         </Button>

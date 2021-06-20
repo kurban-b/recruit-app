@@ -1,9 +1,11 @@
 import React from 'react'
-import { Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core'
-import { useSelector } from 'react-redux'
-import { clientsSelector } from '../../../redux/selectors'
+import { Card, CardActions, CardContent, CardHeader, Grid, IconButton, makeStyles, Typography } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import 'moment/locale/ru'
+import { clientsSelector } from '../../../redux/selectors/clients'
+import { Delete, EventAvailableTwoTone, EventNote, Favorite, Share } from '@material-ui/icons'
+import { deleteNote } from '../../../redux/actions/notes'
 
 const useStyes = makeStyles((theme) => ({
   card: {
@@ -20,31 +22,40 @@ const useStyes = makeStyles((theme) => ({
 
 function Note ({note}) {
   const classes = useStyes();
+  const dispatch = useDispatch();
 
   const client = useSelector(clientsSelector).find(item => item.id === note.clientId)
 
+  const handleDelete = () => {
+    dispatch(deleteNote(note.id))
+  }
+
   return (
     <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <EventNote />
+        }
+        title={note.title}
+        subheader={`${moment(note.date).locale('ru').format('LL')} - ${client.fullName}`}
+      >
+      </CardHeader>
       <CardContent>
-        <Typography variant="h5" component="h2" className={classes.title}>
-          ~ {note.title} ~
-        </Typography>
-        <Typography variant="body1" component="p" className={classes.subtitle}>
+        <Typography variant="body2" color="textSecondary" component="p">
           {note.content}
         </Typography>
-        <Grid container className={classes.footer}>
-          <Grid md={6}>
-            <Typography variant="body1" component="p">
-              Дата: { moment(note.date).locale('ru').format('L') }
-            </Typography>
-          </Grid>
-          <Grid md={6}>
-            <Typography variant="body1" component="p">
-              Соискатель: {client.fullName}
-            </Typography>
-          </Grid>
-        </Grid>
       </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <Favorite />
+        </IconButton>
+        <IconButton aria-label="share">
+          <Share />
+        </IconButton>
+        <IconButton aria-label="delete" onClick={handleDelete}>
+          <Delete />
+        </IconButton>
+      </CardActions>
     </Card>
   )
 }

@@ -123,8 +123,8 @@ function Registration() {
   };
   return (
     <div className={classes.registration}>
-      <Card>
-        <CardContent className={classes.registrationBlock}>
+      <Card className={classes.registrationBlock}>
+        <CardContent >
           <Grid
             container
             direction="column"

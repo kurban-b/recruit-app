@@ -61,3 +61,9 @@ export const registrationStart = (firstName, lastName, email, login, password) =
       })
   }
 }
+
+export const logout = () => {
+  return {
+    type: "auth/logout"
+  }
+}

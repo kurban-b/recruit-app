@@ -1,18 +1,20 @@
-import React from "react";
-import { DataGrid, ruRU } from "@material-ui/data-grid";
+import React, { useState } from "react";
+import { DataGrid } from "@material-ui/data-grid";
 import { useSelector } from "react-redux";
-import { clientsSelector } from "../../../redux/selectors";
 import {
-  Avatar,
+  Avatar, Badge,
   Chip,
-  IconButton,
-  InputAdornment,
-  makeStyles,
-  TextField,
-  Tooltip,
-} from "@material-ui/core";
-import { MoreVert, Search } from "@material-ui/icons";
-import MenuRow from './MenuRow'
+  Grid, IconButton,
+  makeStyles
+} from '@material-ui/core'
+import MenuRow from "./MenuRow";
+import {
+  clientsLoadingSelector,
+} from "../../../redux/selectors/clients";
+import TableHeader from './TableHeader'
+import { notesSelector } from '../../../redux/selectors/notes'
+import { Notes } from '@material-ui/icons'
+import BadgeNotes from './BadgeNotes'
 
 const useStyes = makeStyles((theme) => ({
   search: {
@@ -31,7 +33,11 @@ const columns = [
     renderCell: (params) => {
       return (
         <div style={{ display: "flex", alignItems: "center" }}>
-          <Avatar alt={params.row.FullName} src="/static/images/avatar/1.jpg" style={{backgroundColor: "#6a1be8"}}/>
+          <Avatar
+            alt={params.row.FullName}
+            src="/static/images/avatar/1.jpg"
+            style={{ backgroundColor: "#6a1be8" }}
+          />
           <div style={{ marginLeft: "10px" }}>{params.row.FullName}</div>
         </div>
       );
@@ -42,7 +48,7 @@ const columns = [
   {
     field: "stage",
     headerName: "Статус",
-    width: 200,
+    width: 150,
     renderCell: (params) => {
       let stage;
       if (params.row.stage === "Одобрен") {
@@ -69,24 +75,37 @@ const columns = [
     },
   },
   {
-    field: "setting",
-    headerName: " ",
-    width: 65,
+    field: "notes",
+    headerName: "Заметки",
+    width: 90,
     disableColumnMenu: true,
     sortable: false,
     renderCell: (params) => {
       return (
-        <MenuRow clientId={params.row.id}/>
-      );
+        <BadgeNotes notes={params.row.notes} clientId={params.row.id}/>
+      )
+    },
+  },
+  {
+    field: "setting",
+    headerName: " ",
+    width: 60,
+    disableColumnMenu: true,
+    sortable: false,
+    renderCell: (params) => {
+      return <MenuRow clientId={params.row.id} archive={params.row.archive} />;
     },
   },
 ];
 
-function ListClients() {
+function ListClients({ clients }) {
   const classes = useStyes();
-  const clients = useSelector(clientsSelector);
 
-  const load = useSelector((state) => state.clients.loading);
+  const notes = useSelector(notesSelector)
+
+  const [selectedClients, setSelectedClients] = useState([]);
+
+  const load = useSelector(clientsLoadingSelector);
 
   const row =
     clients === undefined
@@ -98,6 +117,8 @@ function ListClients() {
             company: client.company,
             specialty: client.specialty,
             stage: client.stage,
+            archive: client.archive,
+            notes: notes.filter(note => note.clientId === client.id)
           };
         });
 
@@ -108,29 +129,24 @@ function ListClients() {
         boxShadow: "0 0 30px -10px rgba(0,0,0,.2)",
       }}
     >
-      <TextField
-        size="small"
-        variant="outlined"
-        className={classes.search}
-        placeholder="Поиск"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start" className={classes.searchBtn}>
-              <Search />
-            </InputAdornment>
-          ),
-        }}
-      />
-      <div style={{ height: 400, width: "100%" }}>
-        <DataGrid
-          loading={load}
-          rows={row}
-          columns={columns}
-          pageSize={5}
-          checkboxSelection
-          disableSelectionOnClick
-        />
-      </div>
+      <Grid container md={12}>
+        <TableHeader selectedClients={selectedClients}/>
+        <Grid md={12}>
+          <div style={{ height: 400, width: "100%" }}>
+            <DataGrid
+              loading={load}
+              rows={row}
+              columns={columns}
+              pageSize={5}
+              checkboxSelection
+              disableSelectionOnClick
+              onSelectionModelChange={(params) =>
+                setSelectedClients(params.selectionModel)
+              }
+            />
+          </div>
+        </Grid>
+      </Grid>
     </div>
   );
 }

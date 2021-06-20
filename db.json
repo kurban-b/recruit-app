@@ -11,18 +11,6 @@
       "address": "UK, London",
       "avatar": null,
       "token": "nrOSsjOyrMWxcexUpJkp4D83en8zVSdhwrt7iyE7nSrxVYYg41Dso1Q7mRBHR1czMLuBQgbh2aqYezVmJNS3nJNoT5MFVl7kRXn0"
-    },
-    {
-      "firstName": "фывыва",
-      "lastName": "выаыв",
-      "email": "а",
-      "login": "",
-      "password": "",
-      "phone": null,
-      "address": null,
-      "avatar": null,
-      "token": "lzLhU7MDuiXkK9Mf2hynwe30ec7T0jxcOdbdJIJWIq5Mr7xJfGUQqa0nMH8SMl7Hdcin1O7FAdbvClclX5h5VYsdEGpy4RNp3C95",
-      "id": 2
     }
   ],
   "clients": [
@@ -90,6 +78,19 @@
       "companyId": 2,
       "stageId": 1,
       "archive": false
+    },
+    {
+      "recruiterId": 1,
+      "fullName": "Иванов Иван",
+      "email": "abc12345",
+      "phone": "+18990220202",
+      "address": "г. Грозный",
+      "specialty": "Психолог",
+      "companyId": 3,
+      "avatar": null,
+      "stageId": 1,
+      "archive": true,
+      "id": 6
     }
   ],
   "interviews": [
@@ -124,6 +125,22 @@
       "title": "Lorem ipsum dolor sit amet",
       "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur eius facere laudantium voluptatem voluptatibus! Et facere illo laboriosam omnis repellendus similique totam voluptatem. At dolor dolores esse, illum libero sint! Ab, aut distinctio ea eos, id libero minima nam nihil nobis quam quisquam, ratione sapiente sequi sint tempore vitae voluptatibus!",
       "date": "2021-06-17T12:45:54.061Z"
+    },
+    {
+      "title": "Разнообразный и богатый опыт консультация",
+      "content": "Разнообразный и богатый опыт консультацияeeeeeeeeeeeee",
+      "clientId": 1,
+      "date": "2021-06-20T12:25:05.442Z",
+      "recruiterId": 1,
+      "id": 3
+    },
+    {
+      "title": "ekfejrioferojfioerjfioer",
+      "content": "kfkerkflerjklfnlkernfjkernjkfnerjkfnjkernfjkernjfknerjkfn",
+      "clientId": 5,
+      "date": "2021-06-20T13:22:31.833Z",
+      "recruiterId": 1,
+      "id": 4
     }
   ],
   "stages": [

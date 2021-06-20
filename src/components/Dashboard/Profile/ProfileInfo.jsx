@@ -9,15 +9,20 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import { Save } from "@material-ui/icons";
+import { ArrowBack, Save } from '@material-ui/icons'
 import { useSelector } from "react-redux";
-import { companiesSelector } from "../../../redux/selectors";
+import { companiesSelector } from '../../../redux/selectors/companies'
+import { Link } from 'react-router-dom'
 
 const useStyes = makeStyles((theme) => ({
   input: {
     marginBottom: "20px",
-    width: "95%",
+    width: "100%",
   },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
 }));
 
 function ProfileInfo({ client }) {
@@ -35,35 +40,42 @@ function ProfileInfo({ client }) {
     <Grid container>
       <Grid item md={12} justify="flex-end">
         <TextField
-          id="outlined-basic"
+          size='small'
           label="Фамилия, Имя"
           variant="outlined"
           className={classes.input}
           defaultValue={client.fullName}
         />
         <TextField
-          id="outlined-basic"
+          size='small'
           label="Эл. почта"
           variant="outlined"
           className={classes.input}
           defaultValue={client.email}
         />
         <TextField
-          id="outlined-basic"
+          size='small'
           label="Номер тел."
           variant="outlined"
           className={classes.input}
           defaultValue={client.phone}
         />
         <TextField
-          id="outlined-basic"
+          size='small'
           label="Адрес"
           variant="outlined"
           className={classes.input}
           defaultValue={client.address}
         />
+        <TextField
+          size='small'
+          label="Специальность"
+          variant="outlined"
+          className={classes.input}
+          defaultValue={client.specialty}
+        />
 
-        <FormControl variant="outlined" className={classes.input}>
+        <FormControl variant="outlined" className={classes.input} size='small'>
           <InputLabel id="demo-simple-select-outlined-label">
             Компания
           </InputLabel>
@@ -72,7 +84,7 @@ function ProfileInfo({ client }) {
             id="demo-simple-select-outlined"
             value={companyId}
             onChange={handleChange}
-            label="Age"
+            label="Компания"
             displayEmpty={true}
           >
             {companies.map((item) => {
@@ -85,9 +97,17 @@ function ProfileInfo({ client }) {
         </FormControl>
       </Grid>
       <Grid item md={12}>
-        <Button variant="contained" color="secondary" startIcon={<Save />}>
-          Сохранить
-        </Button>
+        <div className={classes.buttons}>
+          <Link exact to={'/dashboard/users'}>
+            <Button variant="outlined" color="secondary" startIcon={<ArrowBack />}>
+              Назад
+            </Button>
+          </Link>
+
+          <Button variant="contained" color="secondary" startIcon={<Save />}>
+            Сохранить
+          </Button>
+        </div>
       </Grid>
     </Grid>
   );

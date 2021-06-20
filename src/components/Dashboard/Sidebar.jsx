@@ -14,7 +14,7 @@ import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 import TodayIcon from "@material-ui/icons/Today";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectRecruter, stagesSelector } from '../../redux/selectors'
+import { recruterSelector } from '../../redux/selectors/auth'
 
 const useStyes = makeStyles((theme) => ({
   sidebar: {
@@ -53,7 +53,7 @@ const useStyes = makeStyles((theme) => ({
 }));
 
 function Sidebar() {
-  const recruiter = useSelector(selectRecruter);
+  const recruiter = useSelector(recruterSelector);
 
 
 

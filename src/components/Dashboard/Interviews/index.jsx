@@ -1,9 +1,10 @@
 import React from 'react'
 import { DataGrid } from '@material-ui/data-grid'
 import { useSelector } from 'react-redux'
-import { clientsSelector, interviewsSelector } from '../../../redux/selectors'
 import moment from 'moment'
 import 'moment/locale/ru'
+import { interviewsSelector } from '../../../redux/selectors/inerviews'
+import { clientsSelector } from '../../../redux/selectors/clients'
 
 const columns = [
   { field: 'time', headerName: 'Время', width: 120 },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Avatar, makeStyles, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, makeStyles, Toolbar } from '@material-ui/core'
 import AvatarMenu from './AvatarMenu'
 
 const useStyes = makeStyles((theme) => ({

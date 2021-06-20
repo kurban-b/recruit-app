@@ -11,14 +11,16 @@ import {
   InputLabel,
   FormControl,
   FormControlLabel,
-  Checkbox, CardContent, Card,
-} from '@material-ui/core'
+  Checkbox,
+  CardContent,
+  Card,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { useDispatch, useSelector } from 'react-redux'
-import { startLogin } from '../../redux/actions/auth'
-import { authErrorSelector } from '../../redux/selectors/auth'
-import { Alert } from '@material-ui/lab'
+import { useDispatch, useSelector } from "react-redux";
+import { startLogin } from "../../redux/actions/auth";
+import { authErrorSelector } from "../../redux/selectors/auth";
+import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   login: {
@@ -40,15 +42,15 @@ const useStyles = makeStyles((theme) => ({
   },
   error: {
     marginBottom: "20px",
-    marginTop: "20px"
-  }
+    marginTop: "20px",
+  },
 }));
 
 function Login() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const authError = useSelector(authErrorSelector)
+  const authError = useSelector(authErrorSelector);
 
   const [values, setValues] = useState({
     login: "",
@@ -59,15 +61,15 @@ function Login() {
 
   const handleLogin = () => {
     dispatch(startLogin(values.login, values.password, values.checkbox));
-  }
+  };
 
   const handleCheckbox = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.checked });
   };
 
   const handleChangeLogin = (prop) => (event) => {
-    setValues({...values, [prop]: event.target.value})
-  }
+    setValues({ ...values, [prop]: event.target.value });
+  };
   const handleChangePassword = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -81,9 +83,9 @@ function Login() {
   };
 
   return (
-    <div >
+    <div>
       <Card className={classes.login}>
-        <CardContent >
+        <CardContent>
           <Grid container direction="column">
             <Typography
               className={classes.title}
@@ -103,7 +105,11 @@ function Login() {
               onChange={handleChangeLogin("login")}
             />
 
-            <FormControl className={classes.loginInput} variant="outlined" required>
+            <FormControl
+              className={classes.loginInput}
+              variant="outlined"
+              required
+            >
               <InputLabel htmlFor="outlined-adornment-password">
                 Password
               </InputLabel>
@@ -128,7 +134,7 @@ function Login() {
               />
             </FormControl>
             <Alert severity="info" color="info">
-              Login: admin, Password: admin
+              <b>Login:</b>  admin / <b>Password:</b> admin
             </Alert>
             <FormControlLabel
               control={
@@ -154,18 +160,14 @@ function Login() {
             <Button color="primary" component={Link} to="/auth/registration">
               Регистрация
             </Button>
-            {authError ?
+            {authError ? (
               <Alert severity="error" className={classes.error}>
                 Неверный логин или пароль!
               </Alert>
-              :
-              null
-            }
-
+            ) : null}
           </Grid>
         </CardContent>
       </Card>
-
     </div>
   );
 }

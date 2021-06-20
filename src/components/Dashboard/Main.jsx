@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from 'react-router-dom'
 import Clients from "./Clients/index";
 import { makeStyles } from "@material-ui/core";
 import Account from "../Account/index";
 import { useDispatch, useSelector } from 'react-redux'
-import { selectRecruter, tokenSelector } from '../../redux/selectors/auth'
 import Profile from "./Profile/index";
 import { loadingClients } from '../../redux/actions/clients'
-import { loadingCompanies, loadingInterviews, loadingNotes, loadingStages } from '../../redux/actions/application'
 import Notes from './Notes/index'
 import Interviews from './Interviews/index'
+import { loadingNotes } from '../../redux/actions/notes'
+import { loadingCompanies } from '../../redux/actions/companies'
+import { loadingStages } from '../../redux/actions/stages'
+import { loadingInterviews } from '../../redux/actions/interviews'
+import { clientsSelector } from '../../redux/selectors/clients'
+import { recruterSelector, tokenSelector } from '../../redux/selectors/auth'
+import Calendar from './Calendar'
 
 const useStyes = makeStyles((theme) => ({
   main: {
@@ -21,9 +26,11 @@ function Main() {
   const dispatch = useDispatch();
   const classes = useStyes();
 
-  const load = useSelector((state) => state.clients.loading);
+  const clients = useSelector(clientsSelector)
 
-  const recruter = useSelector(selectRecruter);
+  const load = useSelector((state) => state.clientsReducer.loading);
+
+  const recruter = useSelector(recruterSelector);
 
   const token = useSelector(tokenSelector);
 
@@ -35,12 +42,10 @@ function Main() {
     dispatch(loadingInterviews(token));
   }, [dispatch, token]);
 
-  const clients = useSelector((state) => state.clients.clients);
-
   return (
     <div className={classes.main}>
       <Switch>
-        <Route exact path={"/dashboard/users"}>
+        <Route exact path={"/dashboard/users/:path_?"}>
           <Clients />
         </Route>
         <Route exact path={"/dashboard/nodes"}>
@@ -55,6 +60,10 @@ function Main() {
         <Route exact path={"/dashboard/profile/:id_?"}>
           {load ? null : <Profile clients={clients} />}
         </Route>
+        <Route exact path={'/dashboard/calendar'}>
+          <Calendar />
+        </Route>
+        <Redirect exact to={"/dashboard/users"}/>
       </Switch>
     </div>
   );

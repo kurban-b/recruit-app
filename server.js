@@ -140,8 +140,6 @@ server.post("/notes", authRecruiter, (req, res, next) => {
 server.post("/clients", (req, res, next) => {
   req.body = {
     ...req.body,
-    phone: null,
-    address: null,
     avatar: null,
     stageId: 1,
     archive: false,

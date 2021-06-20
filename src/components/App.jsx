@@ -3,11 +3,11 @@ import React from "react";
 import Dashboard from "./Dashboard";
 import Auth from "./Auth";
 import { useSelector } from "react-redux";
-import { selectRecruter } from "../redux/selectors";
+import { recruterSelector } from '../redux/selectors/auth'
 
 function App() {
 
-  const recruiter = useSelector(selectRecruter);
+  const recruiter = useSelector(recruterSelector);
 
 
 
