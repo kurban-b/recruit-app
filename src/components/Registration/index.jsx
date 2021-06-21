@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
-  Button, Card, CardContent,
-  FormControl,
+  Button, Card, CardContent, Checkbox,
+  FormControl, FormControlLabel,
   Grid,
   IconButton,
   InputAdornment,
@@ -59,6 +59,7 @@ function Registration() {
     repeatShowPassword: false,
     errorRepeatPassword: false,
     error: false,
+    checkbox: false
   });
 
   const handleChangeFirstName = (prop) => (event) => {
@@ -97,6 +98,10 @@ function Registration() {
     setValues({ ...values, repeatShowPassword: !values.repeatShowPassword });
   };
 
+  const handleCheckbox = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.checked });
+  };
+
   const handleRegistartion = () => {
     if (
       values.firstName === "" ||
@@ -116,7 +121,8 @@ function Registration() {
           values.lastName,
           values.email,
           values.login,
-          values.password
+          values.password,
+          values.checkbox
         )
       );
     }
@@ -216,9 +222,21 @@ function Registration() {
                     </IconButton>
                   </InputAdornment>
                 }
-                labelWidth={70}
+                labelWidth={150}
               />
             </FormControl>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={values.checkbox}
+                  onChange={handleCheckbox("checkbox")}
+                  name="checkedB"
+                  color="primary"
+                />
+              }
+              label="Запомнить меня?"
+            />
+            <br />
             {values.errorRepeatPassword ? (
               <Alert severity="error" className={classes.error}>
                 Пароли не совпадают!

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { useSelector } from "react-redux";
 import {
-  Avatar, Badge,
+  Avatar,
   Chip,
-  Grid, IconButton,
+  Grid,
   makeStyles
 } from '@material-ui/core'
 import MenuRow from "./MenuRow";
@@ -13,8 +13,8 @@ import {
 } from "../../../redux/selectors/clients";
 import TableHeader from './TableHeader'
 import { notesSelector } from '../../../redux/selectors/notes'
-import { Notes } from '@material-ui/icons'
 import BadgeNotes from './BadgeNotes'
+import Stages from './Stages'
 
 const useStyes = makeStyles((theme) => ({
   search: {
@@ -23,6 +23,9 @@ const useStyes = makeStyles((theme) => ({
   searchBtn: {
     color: "#ccc",
   },
+  grid: {
+    border: 'none'
+  }
 }));
 
 const columns = [
@@ -50,28 +53,7 @@ const columns = [
     headerName: "Статус",
     width: 150,
     renderCell: (params) => {
-      let stage;
-      if (params.row.stage === "Одобрен") {
-        stage = "secondary";
-      } else if (params.row.stage === "Собеседование") {
-        stage = "primary";
-      }
-      return (
-        <div>
-          <Chip
-            style={{
-              margin: "auto",
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-            }}
-            size="small"
-            label={params.row.stage}
-            color={stage}
-            variant="outlined"
-          />
-        </div>
-      );
+      return <Stages client={params.row} key={params.row.id}/>
     },
   },
   {
@@ -118,7 +100,8 @@ function ListClients({ clients }) {
             specialty: client.specialty,
             stage: client.stage,
             archive: client.archive,
-            notes: notes.filter(note => note.clientId === client.id)
+            notes: notes.filter(note => note.clientId === client.id),
+            stageId: client.stageId
           };
         });
 
@@ -134,6 +117,7 @@ function ListClients({ clients }) {
         <Grid md={12}>
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid
+              className={classes.grid}
               loading={load}
               rows={row}
               columns={columns}

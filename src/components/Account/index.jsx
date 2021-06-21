@@ -19,35 +19,37 @@ function Account ({person}) {
   const classes = useStyes();
 
   return (
-    <Grid container>
-      <Grid md={12}>
-        <Typography variant="h5" component="h2">
-          Аккаунт
-        </Typography>
-        <NavAccount />
+    <div id={'account'}>
+      <Grid container>
+        <Grid md={12}>
+          <Typography variant="h5" component="h2">
+            Аккаунт
+          </Typography>
+          <NavAccount />
+        </Grid>
+        <Grid item md={4}>
+          <Card className={classes.avatarCard}>
+            <CardContent>
+              <AvatarOfAccount person={person}/>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={8}>
+          <Card className={classes.info}>
+            <CardContent>
+              <Switch>
+                <Route exact path={"/dashboard/account"}>
+                  <InfoAccount person={person}/>
+                </Route>
+                <Route exact path={"/dashboard/account/changePassword"}>
+                  <Passwords person={person}/>
+                </Route>
+              </Switch>
+            </CardContent>
+          </Card>
+        </Grid>
       </Grid>
-      <Grid item md={4}>
-        <Card className={classes.avatarCard}>
-          <CardContent>
-            <AvatarOfAccount person={person}/>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item md={8}>
-        <Card className={classes.info}>
-          <CardContent>
-            <Switch>
-              <Route exact path={"/dashboard/account"}>
-                <InfoAccount person={person}/>
-              </Route>
-              <Route exact path={"/dashboard/account/changePassword"}>
-                <Passwords person={person}/>
-              </Route>
-            </Switch>
-          </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
+    </div>
   )
 }
 

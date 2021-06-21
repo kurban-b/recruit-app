@@ -3,14 +3,15 @@
     {
       "id": 1,
       "login": "admin",
-      "password": "admin",
+      "password": "admin3",
       "firstName": "Курбан",
       "lastName": "Буев",
       "email": "m12345@mail.ru",
       "phone": "+79991112233",
       "address": "UK, London",
       "avatar": null,
-      "token": "nrOSsjOyrMWxcexUpJkp4D83en8zVSdhwrt7iyE7nSrxVYYg41Dso1Q7mRBHR1czMLuBQgbh2aqYezVmJNS3nJNoT5MFVl7kRXn0"
+      "token": "nrOSsjOyrMWxcexUpJkp4D83en8zVSdhwrt7iyE7nSrxVYYg41Dso1Q7mRBHR1czMLuBQgbh2aqYezVmJNS3nJNoT5MFVl7kRXn0",
+      "newPassword": "admin3"
     }
   ],
   "clients": [
@@ -23,8 +24,8 @@
       "address": "Вестерос, Север, Черный замок",
       "avatar": null,
       "specialty": "ИТ технологии",
-      "companyId": 1,
-      "stageId": 3,
+      "companyId": 4,
+      "stageId": 2,
       "archive": false
     },
     {
@@ -50,7 +51,7 @@
       "avatar": null,
       "specialty": "Менеджмент",
       "companyId": 2,
-      "stageId": 1,
+      "stageId": 3,
       "archive": false
     },
     {
@@ -63,7 +64,7 @@
       "avatar": null,
       "specialty": "Маркетинг",
       "companyId": 1,
-      "stageId": 2,
+      "stageId": 3,
       "archive": false
     },
     {
@@ -82,7 +83,7 @@
     {
       "recruiterId": 1,
       "fullName": "Иванов Иван",
-      "email": "abc12345",
+      "email": "abc12345@gmail.com",
       "phone": "+18990220202",
       "address": "г. Грозный",
       "specialty": "Психолог",

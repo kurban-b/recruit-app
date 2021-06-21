@@ -91,3 +91,58 @@ export const toggleArchive = (id, archive) => {
       })
   }
 }
+
+export const saveChangesClient = (id, fullName, email, phone, address, specialty, companyId, recruiterId) => {
+  return dispatch => {
+    dispatch({
+      type: 'clients/update/start'
+    })
+
+    fetch(`http://localhost:5000/clients/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fullName: fullName,
+        email: email,
+        phone: phone,
+        address: address,
+        specialty: specialty,
+        companyId: companyId,
+        recruiterId: recruiterId
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        dispatch({
+          type: "clients/update/success",
+          payload: json,
+          id: id
+        })
+      })
+  }
+}
+
+export const changeStage = (id, stageId) => {
+  return dispatch => {
+    dispatch({
+      type: 'clients/update-stage/start'
+    })
+
+    fetch(`http://localhost:5000/clients/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        stageId: stageId,
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        dispatch({
+          type: "clients/update-stage/success",
+          payload: json,
+          id: id
+        })
+      })
+
+  }
+}

@@ -1,10 +1,9 @@
-import React from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import Login from './Login'
-import Registration from './Registration'
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Login from "./Login";
+import Registration from "./Registration";
 
-
-function Auth (props) {
+function Auth() {
   return (
     <div className="auth">
       <Switch>
@@ -17,7 +16,7 @@ function Auth (props) {
         <Redirect to={"/auth/login"} />
       </Switch>
     </div>
-  )
+  );
 }
 
-export default Auth
+export default Auth;

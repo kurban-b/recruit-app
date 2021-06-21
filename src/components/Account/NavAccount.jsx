@@ -1,6 +1,7 @@
 import React from 'react'
-import { Breadcrumbs, Link, makeStyles } from '@material-ui/core'
+import { Breadcrumbs, makeStyles } from '@material-ui/core'
 import { AccountBox, VpnKey } from '@material-ui/icons'
+import { Link } from 'react-router-dom'
 
 const useStyes = makeStyles((theme) => ({
   nav: {
@@ -21,14 +22,14 @@ function NavAccount () {
 
   return (
     <Breadcrumbs aria-label="breadcrumb" className={classes.nav}>
-      <Link color="inherit" href="/dashboard/account" className={classes.link}>
+      <Link exact to="/dashboard/account" className={classes.link}>
         <AccountBox className={classes.icon} />
-        Рдактировать профиль
+        Редактировать профиль
       </Link>
       <Link
-        color="inherit"
+        exact
         className={classes.link}
-        href="/dashboard/account/changePassword"
+        to="/dashboard/account/changePassword"
       >
         <VpnKey className={classes.icon} />
         Изменить пароль

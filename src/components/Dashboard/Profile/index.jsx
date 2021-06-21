@@ -23,6 +23,9 @@ const useStyes = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: "flex-end",
     width: '100%'
+  },
+  title: {
+    marginBottom: '20px'
   }
 }));
 
@@ -39,8 +42,8 @@ function Profile({ clients }) {
     <div>
       <Grid container>
         <Grid md={12}>
-          <Typography variant="h5" component="h2">
-            Аккаунт
+          <Typography variant="h5" component="h2" className={classes.title}>
+            Профиль соискателя
           </Typography>
         </Grid>
         <Grid item md={4}>
@@ -53,7 +56,7 @@ function Profile({ clients }) {
                     justifyContent: "flex-end"
                   }}
                   size="small"
-                  label={stage.name}
+                  label={stage === undefined ? null : stage.name}
                   color={'primary'}
                   variant="default"
                 />

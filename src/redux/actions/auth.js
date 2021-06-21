@@ -35,7 +35,7 @@ export const startLogin = (login, password, checkbox) => {
   }
 }
 
-export const registrationStart = (firstName, lastName, email, login, password) => {
+export const registrationStart = (firstName, lastName, email, login, password, checkbox) => {
   return dispatch => {
     dispatch({
       type: "auth/registration/start"
@@ -55,8 +55,9 @@ export const registrationStart = (firstName, lastName, email, login, password) =
       .then(res => res.json())
       .then(json => {
         dispatch({
-          type: "auth/registartion/success",
-          payload: json
+          type: "auth/registration/success",
+          payload: json,
+          checkbox: checkbox
         })
       })
   }

@@ -69,7 +69,8 @@ function Login() {
 
   const handleChangeLogin = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
-  };
+  }
+
   const handleChangePassword = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -130,11 +131,11 @@ function Login() {
                     </IconButton>
                   </InputAdornment>
                 }
-                labelWidth={70}
+                labelWidth={85}
               />
             </FormControl>
             <Alert severity="info" color="info">
-              <b>Login:</b>  admin / <b>Password:</b> admin
+              <b>Login:</b> admin / <b>Password:</b> admin
             </Alert>
             <FormControlLabel
               control={

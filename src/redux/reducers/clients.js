@@ -1,6 +1,7 @@
 const initialState = {
   clients: [],
-  loading: false
+  loading: false,
+  loadingUpdate: false
 }
 
 export const clientsReducer = (state = initialState, action) => {
@@ -47,6 +48,38 @@ export const clientsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        clients: state.clients.map(client => {
+          if (client.id === action.id) {
+            return action.payload
+          }
+          return client
+        })
+      }
+    case "clients/update/start":
+      return {
+        ...state,
+        loadingUpdate: true
+      }
+    case "clients/update/success":
+      return {
+        ...state,
+        loadingUpdate: false,
+        clients: state.clients.map(client => {
+          if (client.id === action.id) {
+            return action.payload
+          }
+          return client
+        })
+      }
+    case "clients/update-stage/start":
+      return {
+        ...state,
+        loadingUpdate: true
+      }
+    case "clients/update-stage/success":
+      return {
+        ...state,
+        loadingUpdate: false,
         clients: state.clients.map(client => {
           if (client.id === action.id) {
             return action.payload

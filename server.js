@@ -96,7 +96,7 @@ server.get("/clients", authRecruiter, (req, res) => {
     (client) => client.recruiterId === req.user.id
   );
   if (fiteredClients.toJSON().length === 0) {
-    res.status(404).json("по данному запросу ничего не найдено");
+    res.status(404).json([]);
   }
   res.json(fiteredClients);
 });
@@ -107,7 +107,7 @@ server.get("/companies", authRecruiter, (req, res) => {
     (company) => company.recruiterId === req.user.id
   );
   if (fiteredCompanies.toJSON().length === 0) {
-    res.status(404).json("по данному запросу ничего не найдено");
+    res.status(404).json([]);
   }
   res.json(fiteredCompanies);
 });
@@ -116,7 +116,7 @@ server.get("/companies", authRecruiter, (req, res) => {
 server.get("/notes", authRecruiter, (req, res) => {
   const fiteredNotes = notes.filter((note) => note.recruiterId === req.user.id);
   if (fiteredNotes.toJSON().length === 0) {
-    res.status(404).json("по данному запросу ничего не найдено");
+    res.status(404).json([]);
   }
   res.json(fiteredNotes);
 });
@@ -163,7 +163,7 @@ server.get("/interviews", authRecruiter, (req, res) => {
     .toJSON()
     .filter((interview) => interview.recruiterId === req.user.id);
   if (fiteredInterviews.length === 0) {
-    res.status(404).json("по данному запросу ничего не найдено");
+    res.status(404).json([]);
   }
   res.json(fiteredInterviews);
 });

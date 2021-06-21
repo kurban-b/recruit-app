@@ -34,6 +34,9 @@ export const authReducer = (state = initialState, action) => {
         loadingRegistration: true
       }
     case "auth/registration/success":
+      if (action.checkbox) {
+        localStorage.setItem("user", JSON.stringify(action.payload))
+      }
       return {
         ...state,
         loadingRegistration: false,

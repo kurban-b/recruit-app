@@ -12,6 +12,7 @@ import CompaniesList from "./CompaniesList";
 import { Alert } from "@material-ui/lab";
 import { saveChangesAccaunt } from '../../redux/actions/auth'
 import { loadinChangesSelector } from '../../redux/selectors/auth'
+import { scrollUp } from '../../addition'
 
 const useStyes = makeStyles((theme) => ({
   input: {
@@ -28,9 +29,12 @@ const useStyes = makeStyles((theme) => ({
   },
 }));
 
+
+
 function InfoAccount({ person }) {
   const classes = useStyes();
   const dispatch = useDispatch();
+
 
   const companies = useSelector(companiesSelector);
   const loadinChanges = useSelector(loadinChangesSelector)
@@ -46,22 +50,7 @@ function InfoAccount({ person }) {
     modalMessage: false
   });
 
-  const handleChangeLogin = (prop) => (event) => {
-    setValue({ ...value, [prop]: event.target.value });
-  };
-  const handleChangeFirstName = (prop) => (event) => {
-    setValue({ ...value, [prop]: event.target.value });
-  };
-  const handleChangeLastName = (prop) => (event) => {
-    setValue({ ...value, [prop]: event.target.value });
-  };
-  const handleChangeEmail = (prop) => (event) => {
-    setValue({ ...value, [prop]: event.target.value });
-  };
-  const handleChangePhone = (prop) => (event) => {
-    setValue({ ...value, [prop]: event.target.value });
-  };
-  const handleChangeAddress = (prop) => (event) => {
+  const handleChange = (prop) => (event) => {
     setValue({ ...value, [prop]: event.target.value });
   };
 
@@ -99,7 +88,7 @@ function InfoAccount({ person }) {
           className={classes.input}
           defaultValue={person.login}
           value={value.login}
-          onChange={handleChangeLogin("login")}
+          onChange={handleChange("login")}
           required
         />
         <TextField
@@ -108,7 +97,7 @@ function InfoAccount({ person }) {
           className={classes.input}
           defaultValue={person.firstName}
           value={value.firstName}
-          onChange={handleChangeFirstName("firstName")}
+          onChange={handleChange("firstName")}
           required
         />
         <TextField
@@ -118,7 +107,7 @@ function InfoAccount({ person }) {
           className={classes.input}
           defaultValue={person.lastName}
           value={value.lastName}
-          onChange={handleChangeLastName("lastName")}
+          onChange={handleChange("lastName")}
           required
         />
       </Grid>
@@ -129,7 +118,7 @@ function InfoAccount({ person }) {
           className={classes.input}
           defaultValue={person.email}
           value={value.email}
-          onChange={handleChangeEmail("email")}
+          onChange={handleChange("email")}
           required
         />
         <TextField
@@ -138,7 +127,7 @@ function InfoAccount({ person }) {
           className={classes.input}
           defaultValue={person.phone}
           value={value.phone}
-          onChange={handleChangePhone("phone")}
+          onChange={handleChange("phone")}
         />
         <TextField
           label="Адрес"
@@ -146,7 +135,7 @@ function InfoAccount({ person }) {
           className={classes.input}
           defaultValue={person.address}
           value={value.address}
-          onChange={handleChangeAddress("address")}
+          onChange={handleChange("address")}
         />
       </Grid>
       <Grid item md={12}>

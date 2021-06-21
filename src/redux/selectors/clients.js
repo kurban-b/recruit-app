@@ -4,6 +4,7 @@ const clients = (state) => state.clientsReducer.clients;
 const loading = (state) => state.clientsReducer.loading;
 const companies = (state) => state.companiesReducer.companies;
 const stages = (state) => state.stagesReducer.stages;
+const loadingUpdate = (state) => state.clientsReducer.loadingUpdate;
 
 // Селекторы
 export const clientsSelector = createSelector(
@@ -25,14 +26,25 @@ export const clientsSelector = createSelector(
   }
 );
 
-export const clientsWithoutArchiveSelector = createSelector(clientsSelector, (clients) => {
-  return clients.filter(client => !client.archive)
-})
+export const clientsWithoutArchiveSelector = createSelector(
+  clientsSelector,
+  (clients) => {
+    return clients.filter((client) => !client.archive);
+  }
+);
 
-export const clientsArchiveSelector = createSelector(clientsSelector, (clients) => {
-  return clients.filter(client => client.archive)
-})
+export const clientsArchiveSelector = createSelector(
+  clientsSelector,
+  (clients) => {
+    return clients.filter((client) => client.archive);
+  }
+);
 
 export const clientsLoadingSelector = createSelector(loading, (loading) => {
   return loading;
 });
+
+export const clientsLoadingUpdateSelector = createSelector(
+  loadingUpdate,
+  (loadingUpdate) => loadingUpdate
+);
