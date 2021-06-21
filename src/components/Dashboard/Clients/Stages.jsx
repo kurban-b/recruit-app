@@ -55,8 +55,6 @@ function Stages({ client }) {
     error: false
   })
 
-  console.log(values)
-
   const handleChange = (prop) => (event) => {
     setValues({...values, [prop]: event.target.value})
   }
@@ -120,8 +118,8 @@ function Stages({ client }) {
                 label="Статус * "
                 displayEmpty={true}
               >
-                {stages.map((item) => {
-                  return <MenuItem value={item.id}>{item.name}</MenuItem>;
+                {stages.map((item, index) => {
+                  return <MenuItem value={item.id} key={index}>{item.name}</MenuItem>;
                 })}
               </Select>
             </FormControl>

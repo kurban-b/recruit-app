@@ -1,45 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
-  Avatar, Dialog,
+  Avatar,
+  Dialog,
   Divider,
-  IconButton,
   List,
-  ListItem, ListItemAvatar,
-  ListItemSecondaryAction,
-  ListItemText, makeStyles,
-  Typography
-} from '@material-ui/core'
-import { Add, Delete } from '@material-ui/icons'
-import ModalAddCompany from './ModalAddCompany'
-import { useDispatch } from 'react-redux'
-import { deleteCompany } from '../../redux/actions/companies'
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import { Add } from "@material-ui/icons";
+import ModalAddCompany from "./ModalAddCompany";
+import RowCompany from "./RowCompany";
 
-const useStyles = makeStyles(()=>({
+const useStyles = makeStyles(() => ({
   companies: {
     marginBottom: "20px",
     backgroundColor: "rgba(184,184,184,0.09)",
-    padding: "10px"
-  }
-}))
+    padding: "10px",
+  },
+}));
 
-function CompaniesList ({companies}) {
+function CompaniesList({ companies }) {
   const classes = useStyles();
-
-  const dispatch = useDispatch()
 
   const [open, setOpen] = useState(false);
 
   const handleModalOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleModalClose = () => {
-    setOpen(false)
-  }
-
-  const handleDelete = (id) => () => {
-    dispatch(deleteCompany(id))
-  }
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -48,39 +42,30 @@ function CompaniesList ({companies}) {
       </Typography>
       <div className={classes.companies}>
         <List>
-          {companies.map((company, index)=> {
+          {companies.map((company, index) => {
             return (
-              <>
-                <ListItem key={index}>
-                  <ListItemText
-                    primary={company.name}
-                  />
-                  <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete" onClick={handleDelete(company.id)}>
-                      <Delete />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <Divider/>
-              </>
-            )
+              <RowCompany
+                company={company}
+                key={index}
+              />
+            );
           })}
           <ListItem autoFocus button onClick={handleModalOpen}>
             <ListItemAvatar>
               <Avatar>
-                <Add fontSize='small'/>
+                <Add fontSize="small" />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Добавить новую компанию" />
           </ListItem>
-          <Divider/>
+          <Divider />
         </List>
-        <Dialog open={open} onClose={handleModalClose} >
-          <ModalAddCompany modalClose={setOpen}/>
+        <Dialog open={open} onClose={handleModalClose}>
+          <ModalAddCompany modalClose={setOpen} />
         </Dialog>
       </div>
     </div>
-  )
+  );
 }
 
-export default CompaniesList
+export default CompaniesList;

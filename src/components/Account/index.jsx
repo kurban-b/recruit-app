@@ -19,9 +19,9 @@ function Account ({person}) {
   const classes = useStyes();
 
   return (
-    <div id={'account'}>
+    <div>
       <Grid container>
-        <Grid md={12}>
+        <Grid item md={12}>
           <Typography variant="h5" component="h2">
             Аккаунт
           </Typography>

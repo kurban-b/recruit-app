@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { useSelector } from "react-redux";
 import {
-  Avatar,
-  Chip,
   Grid,
   makeStyles
 } from '@material-ui/core'
@@ -15,6 +13,7 @@ import TableHeader from './TableHeader'
 import { notesSelector } from '../../../redux/selectors/notes'
 import BadgeNotes from './BadgeNotes'
 import Stages from './Stages'
+import AvatarForRow from './AvatarForRow'
 
 const useStyes = makeStyles((theme) => ({
   search: {
@@ -34,16 +33,7 @@ const columns = [
     headerName: "Имя",
     width: 240,
     renderCell: (params) => {
-      return (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Avatar
-            alt={params.row.FullName}
-            src="/static/images/avatar/1.jpg"
-            style={{ backgroundColor: "#6a1be8" }}
-          />
-          <div style={{ marginLeft: "10px" }}>{params.row.FullName}</div>
-        </div>
-      );
+      return <AvatarForRow client={params.row} key={params.row.id}/>
     },
   },
   { field: "company", headerName: "Компания", width: 150 },
@@ -64,7 +54,7 @@ const columns = [
     sortable: false,
     renderCell: (params) => {
       return (
-        <BadgeNotes notes={params.row.notes} clientId={params.row.id}/>
+        <BadgeNotes notes={params.row.notes} clientId={params.row.id} key={params.row.id}/>
       )
     },
   },
@@ -75,7 +65,7 @@ const columns = [
     disableColumnMenu: true,
     sortable: false,
     renderCell: (params) => {
-      return <MenuRow clientId={params.row.id} archive={params.row.archive} />;
+      return <MenuRow clientId={params.row.id} archive={params.row.archive} key={params.row.id}/>;
     },
   },
 ];
@@ -112,9 +102,9 @@ function ListClients({ clients }) {
         boxShadow: "0 0 30px -10px rgba(0,0,0,.2)",
       }}
     >
-      <Grid container md={12}>
+      <Grid container>
         <TableHeader selectedClients={selectedClients}/>
-        <Grid md={12}>
+        <Grid item md={12}>
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid
               className={classes.grid}

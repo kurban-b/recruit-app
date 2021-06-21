@@ -41,7 +41,7 @@ function Profile({ clients }) {
   return (
     <div>
       <Grid container>
-        <Grid md={12}>
+        <Grid item md={12}>
           <Typography variant="h5" component="h2" className={classes.title}>
             Профиль соискателя
           </Typography>

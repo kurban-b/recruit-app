@@ -86,13 +86,13 @@ function ProfileInfo({ client }) {
 
   return (
     <Grid container>
-      <Grid item md={12} justify="flex-end">
+      <Grid item md={12}>
         <TextField
           size="small"
           label="Фамилия, Имя"
           variant="outlined"
           className={classes.input}
-          defaultValue={value.fullName}
+          value={value.fullName}
           onChange={handleChange("fullName")}
           required
         />
@@ -101,7 +101,7 @@ function ProfileInfo({ client }) {
           label="Эл. почта"
           variant="outlined"
           className={classes.input}
-          defaultValue={value.email}
+          value={value.email}
           onChange={handleChange("email")}
           required
         />
@@ -110,7 +110,7 @@ function ProfileInfo({ client }) {
           label="Номер тел."
           variant="outlined"
           className={classes.input}
-          defaultValue={client.phone}
+          value={client.phone}
           onChange={handleChange("phone")}
         />
         <TextField
@@ -118,7 +118,7 @@ function ProfileInfo({ client }) {
           label="Адрес"
           variant="outlined"
           className={classes.input}
-          defaultValue={client.address}
+          value={client.address}
           onChange={handleChange("address")}
         />
         <TextField
@@ -126,8 +126,8 @@ function ProfileInfo({ client }) {
           label="Специальность"
           variant="outlined"
           className={classes.input}
-          defaultValue={client.specialty}
-          onChange={"specialty"}
+          value={value.specialty}
+          onChange={handleChange("specialty")}
         />
 
         <FormControl variant="outlined" className={classes.input} size="small" required>
@@ -142,8 +142,8 @@ function ProfileInfo({ client }) {
             label="Компания * "
             displayEmpty={true}
           >
-            {companies.map((item) => {
-              return <MenuItem value={item.id}>{item.name}</MenuItem>;
+            {companies.map((item, index) => {
+              return <MenuItem value={item.id} key={index}>{item.name}</MenuItem>;
             })}
           </Select>
         </FormControl>
@@ -155,7 +155,7 @@ function ProfileInfo({ client }) {
       )}
       <Grid item md={12}>
         <div className={classes.buttons}>
-          <Link exact to={"/dashboard/users"}>
+          <Link to={"/dashboard/users"}>
             <Button
               variant="outlined"
               color="secondary"

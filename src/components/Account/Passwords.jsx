@@ -6,8 +6,7 @@ import {
   InputAdornment,
   InputLabel,
   makeStyles,
-  OutlinedInput,
-  TextField
+  OutlinedInput
 } from '@material-ui/core'
 import { SaveAlt, Visibility, VisibilityOff } from '@material-ui/icons'
 

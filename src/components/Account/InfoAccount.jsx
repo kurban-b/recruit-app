@@ -12,7 +12,6 @@ import CompaniesList from "./CompaniesList";
 import { Alert } from "@material-ui/lab";
 import { saveChangesAccaunt } from '../../redux/actions/auth'
 import { loadinChangesSelector } from '../../redux/selectors/auth'
-import { scrollUp } from '../../addition'
 
 const useStyes = makeStyles((theme) => ({
   input: {
@@ -86,7 +85,6 @@ function InfoAccount({ person }) {
           label="Логин"
           variant="outlined"
           className={classes.input}
-          defaultValue={person.login}
           value={value.login}
           onChange={handleChange("login")}
           required
@@ -95,7 +93,6 @@ function InfoAccount({ person }) {
           label="Имя"
           variant="outlined"
           className={classes.input}
-          defaultValue={person.firstName}
           value={value.firstName}
           onChange={handleChange("firstName")}
           required
@@ -105,7 +102,6 @@ function InfoAccount({ person }) {
           label="Фамилия"
           variant="outlined"
           className={classes.input}
-          defaultValue={person.lastName}
           value={value.lastName}
           onChange={handleChange("lastName")}
           required
@@ -116,7 +112,6 @@ function InfoAccount({ person }) {
           label="Эл. почта"
           variant="outlined"
           className={classes.input}
-          defaultValue={person.email}
           value={value.email}
           onChange={handleChange("email")}
           required
@@ -125,7 +120,6 @@ function InfoAccount({ person }) {
           label="Номер тел."
           variant="outlined"
           className={classes.input}
-          defaultValue={person.phone}
           value={value.phone}
           onChange={handleChange("phone")}
         />
@@ -133,7 +127,6 @@ function InfoAccount({ person }) {
           label="Адрес"
           variant="outlined"
           className={classes.input}
-          defaultValue={person.address}
           value={value.address}
           onChange={handleChange("address")}
         />

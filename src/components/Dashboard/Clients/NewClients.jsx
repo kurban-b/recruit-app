@@ -172,7 +172,7 @@ function NewClients({ modalClose }) {
   return (
     <div>
       <Grid container className={classes.wrapp}>
-        <Grid md={12}>
+        <Grid item md={12}>
           <Typography variant="h6" component="h2" className={classes.title}>
             Добавление нового соискателя
           </Typography>

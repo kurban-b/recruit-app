@@ -21,8 +21,8 @@ function TableHeader({ selectedClients }) {
   const classes = useStyes();
 
   return (
-    <Grid container md={12}>
-      <Grid md={6}>
+    <Grid container>
+      <Grid item md={6}>
         <TextField
           size="small"
           variant="outlined"
@@ -37,7 +37,7 @@ function TableHeader({ selectedClients }) {
           }}
         />
       </Grid>
-      <Grid md={6}>
+      <Grid item md={6}>
         <div className={classes.selectedWrap}>
           {selectedClients.length > 0 && (
             <>

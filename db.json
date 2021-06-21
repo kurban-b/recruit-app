@@ -24,7 +24,7 @@
       "address": "Вестерос, Север, Черный замок",
       "avatar": null,
       "specialty": "ИТ технологии",
-      "companyId": 4,
+      "companyId": 2,
       "stageId": 2,
       "archive": false
     },
@@ -170,6 +170,11 @@
       "name": "Amazon",
       "recruiterId": 1,
       "id": 4
+    },
+    {
+      "name": "Intocode",
+      "recruiterId": 1,
+      "id": 5
     }
   ]
 }

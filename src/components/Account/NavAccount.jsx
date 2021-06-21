@@ -22,12 +22,11 @@ function NavAccount () {
 
   return (
     <Breadcrumbs aria-label="breadcrumb" className={classes.nav}>
-      <Link exact to="/dashboard/account" className={classes.link}>
+      <Link to="/dashboard/account" className={classes.link}>
         <AccountBox className={classes.icon} />
         Редактировать профиль
       </Link>
       <Link
-        exact
         className={classes.link}
         to="/dashboard/account/changePassword"
       >

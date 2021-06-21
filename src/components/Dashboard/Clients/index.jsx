@@ -24,7 +24,6 @@ function Clients() {
           <ListClients clients={archiveClients}/>
         </Route>
       </Switch>
-
     </div>
   );
 }

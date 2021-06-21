@@ -1,10 +1,10 @@
 import React from 'react'
-import { Card, CardActions, CardContent, CardHeader, Grid, IconButton, makeStyles, Typography } from '@material-ui/core'
+import { Card, CardActions, CardContent, CardHeader, IconButton, makeStyles, Typography } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import 'moment/locale/ru'
 import { clientsSelector } from '../../../redux/selectors/clients'
-import { Delete, EventAvailableTwoTone, EventNote, Favorite, Share } from '@material-ui/icons'
+import { Delete, EventNote, Favorite, Share } from '@material-ui/icons'
 import { deleteNote } from '../../../redux/actions/notes'
 
 const useStyes = makeStyles((theme) => ({
