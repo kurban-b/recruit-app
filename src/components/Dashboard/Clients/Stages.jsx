@@ -41,7 +41,7 @@ const useStyes = makeStyles(()=>({
   }
 }))
 
-function Stages({ client }) {
+function Stages({ client, id }) {
   const classes = useStyes();
 
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ function Stages({ client }) {
       setValues({...values, error: true})
       return null
     }
-    dispatch(changeStage(client.id, values.stageId))
+    dispatch(changeStage(id, values.stageId))
   }
 
   let stage;

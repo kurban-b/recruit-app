@@ -2,6 +2,9 @@ import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { makeStyles } from '@material-ui/core'
+import { useSelector } from 'react-redux'
+import { interviewsSelector } from '../../../redux/selectors/inerviews'
+import { clientsSelector } from '../../../redux/selectors/clients'
 
 const useStayles = makeStyles(()=> ({
   headerMoth: {
@@ -17,6 +20,17 @@ const useStayles = makeStyles(()=> ({
 function Calendar (props) {
   const classes = useStayles();
 
+  const interviews = useSelector(interviewsSelector)
+  const clients = useSelector(clientsSelector)
+
+  const events = interviews.map(item => {
+    return {
+      ...item,
+      title: `Собеседование с ${clients.find(client => item.clientId === client.id).fullName}`,
+      date: item.date
+    }
+  })
+
 
   return (
     <div>
@@ -30,11 +44,7 @@ function Calendar (props) {
           center: 'title',
           right: 'dayGridMonth,dayGridWeek,dayGridDay'
         }}
-        events={[
-          { title: 'event 1', date: '2021-06-06' },
-          { title: 'event 2', date: '2021-07-24' },
-          { title: 'event 3', date: '2021-06-29' }
-        ]}
+        events={events}
       />
     </div>
   )

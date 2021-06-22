@@ -38,12 +38,12 @@ function Notes () {
   return (
     <div>
       <Grid container>
-        <Grid md={8}>
+        <Grid item md={8}>
           <Typography variant="h5" component="h2" className={classes.title}>
             Заметки
           </Typography>
         </Grid>
-        <Grid md={4} className={classes.buttonWrap}>
+        <Grid item md={4} className={classes.buttonWrap}>
           <Button variant="contained" color="primary" startIcon={<Add />} onClick={handleModalOpen}>
             Добавить новую заметку
           </Button>
@@ -51,7 +51,6 @@ function Notes () {
             <ModalAddNote clients={clients} modalClose={setOpen}/>
           </Dialog>
         </Grid>
-
       </Grid>
       {
         notes.map((note, index) => {

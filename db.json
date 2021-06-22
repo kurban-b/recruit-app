@@ -3,7 +3,7 @@
     {
       "id": 1,
       "login": "admin",
-      "password": "admin3",
+      "password": "admin",
       "firstName": "Курбан",
       "lastName": "Буев",
       "email": "m12345@mail.ru",
@@ -25,7 +25,7 @@
       "avatar": null,
       "specialty": "ИТ технологии",
       "companyId": 2,
-      "stageId": 2,
+      "stageId": 3,
       "archive": false
     },
     {
@@ -38,7 +38,7 @@
       "avatar": null,
       "specialty": "Маркетинг",
       "companyId": 3,
-      "stageId": 2,
+      "stageId": 3,
       "archive": false
     },
     {
@@ -51,7 +51,7 @@
       "avatar": null,
       "specialty": "Менеджмент",
       "companyId": 2,
-      "stageId": 3,
+      "stageId": 2,
       "archive": false
     },
     {
@@ -64,7 +64,7 @@
       "avatar": null,
       "specialty": "Маркетинг",
       "companyId": 1,
-      "stageId": 3,
+      "stageId": 2,
       "archive": false
     },
     {
@@ -89,17 +89,23 @@
       "specialty": "Психолог",
       "companyId": 3,
       "avatar": null,
-      "stageId": 1,
+      "stageId": 2,
       "archive": true,
       "id": 6
     }
   ],
   "interviews": [
     {
-      "id": 1,
       "recruiterId": 1,
-      "clientId": 1,
-      "date": "2021-06-11T16:45:54.061Z"
+      "clientId": 3,
+      "date": "2021-06-22T12:36:00+03:00",
+      "id": 1
+    },
+    {
+      "recruiterId": 1,
+      "clientId": 6,
+      "date": "2021-06-22T12:37:00+03:00",
+      "id": 3
     }
   ],
   "notes": [

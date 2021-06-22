@@ -1,11 +1,19 @@
-import React from 'react'
-import { Card, CardActions, CardContent, CardHeader, IconButton, makeStyles, Typography } from '@material-ui/core'
-import { useDispatch, useSelector } from 'react-redux'
-import moment from 'moment'
-import 'moment/locale/ru'
-import { clientsSelector } from '../../../redux/selectors/clients'
-import { Delete, EventNote, Favorite, Share } from '@material-ui/icons'
-import { deleteNote } from '../../../redux/actions/notes'
+import React from "react";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  IconButton,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import "moment/locale/ru";
+import { clientsSelector } from "../../../redux/selectors/clients";
+import { Delete, EventNote, Favorite, Share } from "@material-ui/icons";
+import { deleteNote } from "../../../redux/actions/notes";
 
 const useStyes = makeStyles((theme) => ({
   card: {
@@ -13,33 +21,34 @@ const useStyes = makeStyles((theme) => ({
   },
   footer: {
     margin: "15px 0 5px 0",
-    color: "rgba(61,61,61,0.49)"
+    color: "rgba(61,61,61,0.49)",
   },
   title: {
     marginBottom: "20px",
-  }
+  },
 }));
 
-function Note ({note}) {
+function Note({ note }) {
   const classes = useStyes();
   const dispatch = useDispatch();
 
-  const client = useSelector(clientsSelector).find(item => item.id === note.clientId)
+  const client = useSelector(clientsSelector).find(
+    (item) => item.id === note.clientId
+  );
 
   const handleDelete = () => {
-    dispatch(deleteNote(note.id))
-  }
+    dispatch(deleteNote(note.id));
+  };
 
   return (
     <Card className={classes.card}>
       <CardHeader
-        avatar={
-          <EventNote />
-        }
+        avatar={<EventNote />}
         title={note.title}
-        subheader={`${moment(note.date).locale('ru').format('LL')} - ${client.fullName}`}
-      >
-      </CardHeader>
+        subheader={`${moment(note.date).locale("ru").format("LL")} - ${
+          client === undefined ? null : client.fullName
+        }`}
+      />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {note.content}
@@ -57,7 +66,7 @@ function Note ({note}) {
         </IconButton>
       </CardActions>
     </Card>
-  )
+  );
 }
 
-export default Note
+export default Note;

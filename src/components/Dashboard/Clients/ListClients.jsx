@@ -43,7 +43,7 @@ const columns = [
     headerName: "Статус",
     width: 150,
     renderCell: (params) => {
-      return <Stages client={params.row} key={params.row.id}/>
+      return <Stages client={params.row} id={params.row.id} key={params.row.id}/>
     },
   },
   {
@@ -77,6 +77,8 @@ function ListClients({ clients }) {
 
   const [selectedClients, setSelectedClients] = useState([]);
 
+  const [filter, setFilter] = useState('')
+
   const load = useSelector(clientsLoadingSelector);
 
   const row =
@@ -93,7 +95,7 @@ function ListClients({ clients }) {
             notes: notes.filter(note => note.clientId === client.id),
             stageId: client.stageId
           };
-        });
+        }).filter(client => client.FullName.toUpperCase().indexOf(filter.toUpperCase()) > -1)
 
   return (
     <div
@@ -103,7 +105,7 @@ function ListClients({ clients }) {
       }}
     >
       <Grid container>
-        <TableHeader selectedClients={selectedClients}/>
+        <TableHeader selectedClients={selectedClients} filter={filter} setFilter={setFilter}/>
         <Grid item md={12}>
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid

@@ -17,8 +17,12 @@ const useStyes = makeStyles((theme) => ({
   }
 }));
 
-function TableHeader({ selectedClients }) {
+function TableHeader({ selectedClients, filter, setFilter}) {
   const classes = useStyes();
+
+  const handleChange = (event) => {
+    setFilter(event.target.value)
+  }
 
   return (
     <Grid container>
@@ -27,7 +31,9 @@ function TableHeader({ selectedClients }) {
           size="small"
           variant="outlined"
           className={classes.search}
-          placeholder="Поиск"
+          placeholder="Поиск по имени"
+          value={filter}
+          onChange={handleChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" className={classes.searchBtn}>
