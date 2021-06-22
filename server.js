@@ -90,6 +90,24 @@ const authRecruiter = (req, res, next) => {
   }
 };
 
+server.patch("/recruiters/:id", authRecruiter, (req, res, next) => {
+  if (req.body.password !== undefined) {
+    if (req.body.password === undefined || req.body.newPassword === undefined) {
+      res.status(400).json({error: "введены не все данные!"});
+      res.send();
+    }
+    if (req.body.password === req.user.password) {
+      req.body = { password: req.body.newPassword };
+      next();
+      res.json({success: "пароль изменен!"});
+    }
+    res.status(400).json({error: "неверный пароль!"});
+    res.send();
+  } else {
+    next();
+  }
+});
+
 //Получение клиентов
 server.get("/clients", authRecruiter, (req, res) => {
   const fiteredClients = clients.filter(

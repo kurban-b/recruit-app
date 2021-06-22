@@ -6,8 +6,8 @@ const loadingRegistration = (state) => state.authReducer.loadingRegistration;
 const loadingLogin = (state) => state.authReducer.loadingLogin;
 const loadinChanges = state => state.authReducer.loadingChanges;
 
-// Селекторы
 
+// Селекторы
 export const recruterSelector = createSelector(recruiter, (date) => date);
 
 export const authErrorSelector = createSelector(authError, (date) => date);

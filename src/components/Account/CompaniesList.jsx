@@ -50,7 +50,7 @@ function CompaniesList({ companies }) {
               />
             );
           })}
-          <ListItem autoFocus button onClick={handleModalOpen}>
+          <ListItem button onClick={handleModalOpen}>
             <ListItemAvatar>
               <Avatar>
                 <Add fontSize="small" />

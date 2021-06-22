@@ -3,7 +3,8 @@ const initialState = {
   loadingLogin: false,
   loadingRegistration: false,
   loadingChanges: false,
-  error: false
+  error: false,
+
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -61,6 +62,19 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         loadingChanges: false,
         recruiter: action.payload
+      }
+    case "recruiters/changePassword/start":
+      return {
+        ...state,
+        error: false,
+        loadingChanges: true
+      }
+    case "recruiters/changePassword/success":
+      console.log(action.payload)
+      return {
+        ...state,
+        loadingChanges: false,
+        error: action.payload
       }
     default:
       return state;

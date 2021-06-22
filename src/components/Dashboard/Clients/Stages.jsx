@@ -1,31 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Button,
   Card,
   CardContent,
-  Chip, CircularProgress,
+  Chip,
+  CircularProgress,
   Dialog,
   FormControl,
-  InputLabel, makeStyles,
+  InputLabel,
+  makeStyles,
   MenuItem,
   Select,
-  Typography
-} from '@material-ui/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { stagesSelector } from '../../../redux/selectors/stages'
-import { Save } from '@material-ui/icons'
-import { Alert } from '@material-ui/lab'
-import { clientsLoadingUpdateSelector } from '../../../redux/selectors/clients'
-import { changeStage } from '../../../redux/actions/clients'
+  Typography,
+} from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { stagesSelector } from "../../../redux/selectors/stages";
+import { Save } from "@material-ui/icons";
+import { Alert } from "@material-ui/lab";
+import { clientsLoadingUpdateSelector } from "../../../redux/selectors/clients";
+import { changeStage } from "../../../redux/actions/clients";
 
-const useStyes = makeStyles(()=>({
+const useStyes = makeStyles(() => ({
   card: {
-    width: '100%',
-    padding: '20px'
+    width: "100%",
+    padding: "20px",
   },
   title: {
     marginBottom: "20px",
-    textAlign: 'center'
+    textAlign: "center",
   },
   input: {
     marginBottom: "20px",
@@ -36,45 +38,46 @@ const useStyes = makeStyles(()=>({
     justifyContent: "center",
   },
   error: {
-    marginBottom: '10px',
-    width: '100%'
-  }
-}))
+    marginBottom: "10px",
+    width: "100%",
+  },
+}));
 
 function Stages({ client, id }) {
   const classes = useStyes();
 
   const dispatch = useDispatch();
 
-  const stages = useSelector(stagesSelector)
+  const stages = useSelector(stagesSelector);
   const loadinChanges = useSelector(clientsLoadingUpdateSelector);
 
   const [values, setValues] = useState({
     modal: false,
     stageId: client.stageId,
-    error: false
-  })
+    error: false,
+  });
 
   const handleChange = (prop) => (event) => {
-    setValues({...values, [prop]: event.target.value})
-  }
+    setValues({ ...values, [prop]: event.target.value });
+  };
 
   const handleModalOpen = () => {
-    setValues({...values, modal: true})
-  }
+    setValues({ ...values, modal: true });
+  };
 
   const handleModalClose = () => {
-    setValues({...values, modal: false})
-  }
+    setValues({ ...values, modal: false });
+  };
 
   const handleSaveChanges = () => {
-    setValues({...values, error: false})
+    setValues({ ...values, error: false });
     if (values.stageId === undefined) {
-      setValues({...values, error: true})
-      return null
+      setValues({ ...values, error: true });
+      return null;
     }
-    dispatch(changeStage(id, values.stageId))
-  }
+    dispatch(changeStage(id, values.stageId));
+    setValues({...values, modal: false})
+  };
 
   let stage;
   if (client.stage === "Одобрен") {
@@ -99,14 +102,19 @@ function Stages({ client, id }) {
         onClick={handleModalOpen}
       />
 
-      <Dialog open={values.modal} onClose={handleModalClose} >
+      <Dialog open={values.modal} onClose={handleModalClose}>
         <Card className={classes.card}>
           <CardContent>
-            <Typography variant='h6' component='h3' className={classes.title}>
+            <Typography variant="h6" component="h3" className={classes.title}>
               Изменить статус соискателя
             </Typography>
 
-            <FormControl variant="outlined" className={classes.input} size="small" required>
+            <FormControl
+              variant="outlined"
+              className={classes.input}
+              size="small"
+              required
+            >
               <InputLabel id="demo-simple-select-outlined-label">
                 Статус
               </InputLabel>
@@ -119,7 +127,11 @@ function Stages({ client, id }) {
                 displayEmpty={true}
               >
                 {stages.map((item, index) => {
-                  return <MenuItem value={item.id} key={index}>{item.name}</MenuItem>;
+                  return (
+                    <MenuItem value={item.id} key={index}>
+                      {item.name}
+                    </MenuItem>
+                  );
                 })}
               </Select>
             </FormControl>

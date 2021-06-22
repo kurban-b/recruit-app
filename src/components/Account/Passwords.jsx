@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Button,
   FormControl,
@@ -6,19 +6,36 @@ import {
   InputAdornment,
   InputLabel,
   makeStyles,
-  OutlinedInput
-} from '@material-ui/core'
-import { SaveAlt, Visibility, VisibilityOff } from '@material-ui/icons'
+  OutlinedInput,
+} from "@material-ui/core";
+import { SaveAlt, Visibility, VisibilityOff } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  authErrorSelector, loadinChangesSelector,
+  recruterSelector,
+  tokenSelector,
+} from '../../redux/selectors/auth'
+import { changePassword } from "../../redux/actions/auth";
+import { Alert } from "@material-ui/lab";
 
 const useStyes = makeStyles((theme) => ({
   input: {
     marginBottom: "20px",
     width: "100%",
-  }
+  },
+  error: {
+    marginBottom: "10px",
+  },
 }));
 
-function Passwords () {
+function Passwords() {
   const classes = useStyes();
+  const dispatch = useDispatch();
+
+  const recruiter = useSelector(recruterSelector);
+  const token = useSelector(tokenSelector);
+  const errorChangePassword = useSelector(authErrorSelector);
+  const loading = useSelector(loadinChangesSelector)
 
   const [values, setValues] = useState({
     password: "",
@@ -26,7 +43,9 @@ function Passwords () {
     repeatNewPassword: "",
     showPassword: false,
     showNewPassword: false,
-    showrRepeatNewPassword: false,
+    showRepeatNewPassword: false,
+    error: false,
+    errorPasswords: false,
   });
 
   const handleChangePassword = (prop) => (event) => {
@@ -41,19 +60,31 @@ function Passwords () {
     event.preventDefault();
   };
 
+  const handleSaveChanges = () => {
+    setValues({ ...values, error: false, errorPasswords: false });
+    if (
+      values.password === "" ||
+      values.newPassword === "" ||
+      values.repeatNewPassword === ""
+    ) {
+      setValues({ ...values, error: true });
+      return null;
+    }
+    if (values.newPassword !== values.repeatNewPassword) {
+      setValues({ ...values, errorPasswords: true });
+      return null;
+    }
+    dispatch(
+      changePassword(recruiter.id, values.password, values.newPassword, token)
+    );
+  };
+
   return (
     <div>
-
-      <FormControl
-        className={classes.input}
-        variant="outlined"
-        required
-      >
-        <InputLabel htmlFor="outlined-adornment-password">
-          Пароль
-        </InputLabel>
+      <FormControl className={classes.input} variant="outlined" required>
+        <InputLabel htmlFor="outlined-adornment-password1">Пароль</InputLabel>
         <OutlinedInput
-          id="outlined-adornment-password"
+          id="outlined-adornment-password1"
           type={values.showPassword ? "text" : "password"}
           value={values.password}
           onChange={handleChangePassword("password")}
@@ -61,7 +92,7 @@ function Passwords () {
             <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
-                onClick={handleClickShowPassword('showPassword')}
+                onClick={handleClickShowPassword("showPassword")}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
               >
@@ -73,16 +104,12 @@ function Passwords () {
         />
       </FormControl>
 
-      <FormControl
-        className={classes.input}
-        variant="outlined"
-        required
-      >
-        <InputLabel htmlFor="outlined-adornment-password">
+      <FormControl className={classes.input} variant="outlined" required>
+        <InputLabel htmlFor="outlined-adornment-password2">
           Новый пароль
         </InputLabel>
         <OutlinedInput
-          id="outlined-adornment-password"
+          id="outlined-adornment-password2"
           type={values.showNewPassword ? "text" : "password"}
           value={values.newPassword}
           onChange={handleChangePassword("newPassword")}
@@ -90,7 +117,7 @@ function Passwords () {
             <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
-                onClick={handleClickShowPassword('showNewPassword')}
+                onClick={handleClickShowPassword("showNewPassword")}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
               >
@@ -102,16 +129,12 @@ function Passwords () {
         />
       </FormControl>
 
-      <FormControl
-        className={classes.input}
-        variant="outlined"
-        required
-      >
-        <InputLabel htmlFor="outlined-adornment-password">
+      <FormControl className={classes.input} variant="outlined" required>
+        <InputLabel htmlFor="outlined-adornment-password3">
           Повторите новый пароль
         </InputLabel>
         <OutlinedInput
-          id="outlined-adornment-password"
+          id="outlined-adornment-password3"
           type={values.showRepeatNewPassword ? "text" : "password"}
           value={values.repeatNewPassword}
           onChange={handleChangePassword("repeatNewPassword")}
@@ -119,11 +142,15 @@ function Passwords () {
             <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
-                onClick={handleClickShowPassword('showRepeatNewPassword')}
+                onClick={handleClickShowPassword("showRepeatNewPassword")}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
               >
-                {values.showRepeatNewPassword ? <Visibility /> : <VisibilityOff />}
+                {values.showRepeatNewPassword ? (
+                  <Visibility />
+                ) : (
+                  <VisibilityOff />
+                )}
               </IconButton>
             </InputAdornment>
           }
@@ -131,11 +158,35 @@ function Passwords () {
         />
       </FormControl>
 
-      <Button variant="contained" color="secondary" startIcon={<SaveAlt />}>
+      {values.error && (
+        <Alert severity="warning" className={classes.error}>
+          Заполните все поля
+        </Alert>
+      )}
+
+      {values.errorPasswords && (
+        <Alert severity="warning" className={classes.error}>
+          Пароли не совпадают
+        </Alert>
+      )}
+
+      {errorChangePassword && (
+        <Alert severity="error" className={classes.error}>
+          Неправильный пароль!
+        </Alert>
+      )}
+
+      <Button
+        variant="contained"
+        color="secondary"
+        startIcon={<SaveAlt />}
+        onClick={handleSaveChanges}
+        disabled={loading}
+      >
         Изменить
       </Button>
     </div>
-  )
+  );
 }
 
-export default Passwords
+export default Passwords;
