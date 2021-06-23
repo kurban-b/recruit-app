@@ -13,13 +13,13 @@ import {
   FormControlLabel,
   Checkbox,
   CardContent,
-  Card,
-} from "@material-ui/core";
+  Card, CircularProgress,
+} from '@material-ui/core'
 import { Link } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { startLogin } from "../../redux/actions/auth";
-import { authErrorSelector } from "../../redux/selectors/auth";
+import { authErrorSelector, loadingLoginSelector } from '../../redux/selectors/auth'
 import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const loading = useSelector(loadingLoginSelector)
 
   const authError = useSelector(authErrorSelector);
 
@@ -154,8 +156,14 @@ function Login() {
               color="primary"
               size="large"
               onClick={handleLogin}
+              disabled={loading}
             >
-              Войти
+              {
+                loading ?
+                  <CircularProgress size={30}/>
+                  :
+                  'Войти'
+              }
             </Button>
             <br />
             <Button color="primary" component={Link} to="/auth/registration">

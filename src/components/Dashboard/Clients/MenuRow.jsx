@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import { clientsSelector } from "../../../redux/selectors/clients";
 import { deleteClient, toggleArchive } from '../../../redux/actions/clients'
+import { PropTypes } from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MenuRow({ clientId, archive}) {
+function MenuRow({clientId, archive}) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -110,6 +111,11 @@ function MenuRow({ clientId, archive}) {
       </Popover>
     </div>
   );
+}
+
+MenuRow.propTypes = {
+  archive: PropTypes.bool.isRequired,
+  clientId: PropTypes.number.isRequired
 }
 
 export default MenuRow;

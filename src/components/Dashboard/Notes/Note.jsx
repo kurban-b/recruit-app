@@ -14,6 +14,7 @@ import "moment/locale/ru";
 import { clientsSelector } from "../../../redux/selectors/clients";
 import { Delete, EventNote, Favorite, Share } from "@material-ui/icons";
 import { deleteNote } from "../../../redux/actions/notes";
+import { PropTypes } from 'prop-types'
 
 const useStyes = makeStyles((theme) => ({
   card: {
@@ -67,6 +68,10 @@ function Note({ note }) {
       </CardActions>
     </Card>
   );
+}
+
+Note.propTypes = {
+  note: PropTypes.object.isRequired
 }
 
 export default Note;

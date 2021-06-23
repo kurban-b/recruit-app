@@ -19,6 +19,7 @@ import { recruterSelector } from "../../../redux/selectors/auth";
 import { saveChangesClient } from "../../../redux/actions/clients";
 import { Alert } from "@material-ui/lab";
 import { clientsLoadingUpdateSelector } from "../../../redux/selectors/clients";
+import { PropTypes } from 'prop-types'
 
 const useStyes = makeStyles((theme) => ({
   input: {
@@ -193,6 +194,10 @@ function ProfileInfo({ client }) {
       </Grid>
     </Grid>
   );
+}
+
+ProfileInfo.propTypes = {
+  client: PropTypes.object.isRequired
 }
 
 export default ProfileInfo;

@@ -19,6 +19,7 @@ import { Save } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
 import { clientsLoadingUpdateSelector } from "../../../redux/selectors/clients";
 import { changeStage } from "../../../redux/actions/clients";
+import { PropTypes } from 'prop-types'
 
 const useStyes = makeStyles(() => ({
   card: {
@@ -160,6 +161,11 @@ function Stages({ client, id }) {
       </Dialog>
     </div>
   );
+}
+
+Stages.propTypes = {
+  client: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired
 }
 
 export default Stages;

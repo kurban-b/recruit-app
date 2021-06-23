@@ -55,8 +55,6 @@ const useStyes = makeStyles((theme) => ({
 function Sidebar() {
   const recruiter = useSelector(recruterSelector);
 
-
-
   const classes = useStyes();
 
   return (
@@ -73,7 +71,6 @@ function Sidebar() {
           </div>
         </div>
       </Link>
-
       <div className={classes.list}>
         <List component="nav" aria-label="main mailbox folders">
           <NavLink to="/dashboard/users" activeClassName={classes.active}>

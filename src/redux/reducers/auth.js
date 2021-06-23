@@ -12,7 +12,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingLogin: true,
-        error: null
+        error: false
       };
     case "auth/login/success":
       if (action.checkbox) {
@@ -26,7 +26,8 @@ export const authReducer = (state = initialState, action) => {
     case "auth/login/error":
       return {
         ...state,
-        error: true
+        error: true,
+        loadingLogin: false
       };
     case "auth/registration/start":
       return {

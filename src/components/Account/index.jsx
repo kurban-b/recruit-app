@@ -5,6 +5,7 @@ import InfoAccount from './InfoAccount'
 import NavAccount from './NavAccount'
 import { Route, Switch } from 'react-router-dom'
 import Passwords from './Passwords'
+import { PropTypes } from 'prop-types'
 
 const useStyes = makeStyles((theme) => ({
   avatarCard: {
@@ -51,6 +52,10 @@ function Account ({person}) {
       </Grid>
     </div>
   )
+}
+
+Account.propTypes = {
+  person: PropTypes.object.isRequired
 }
 
 export default Account;

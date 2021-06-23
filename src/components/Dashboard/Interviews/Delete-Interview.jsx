@@ -3,6 +3,7 @@ import { IconButton } from '@material-ui/core'
 import { Delete } from '@material-ui/icons'
 import { useDispatch } from 'react-redux'
 import { deleteInterview } from '../../../redux/actions/interviews'
+import { PropTypes } from 'prop-types'
 
 function DeleteInterview ({id}) {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ function DeleteInterview ({id}) {
       </IconButton>
     </div>
   )
+}
+
+DeleteInterview.propTypes = {
+  id: PropTypes.number.isRequired
 }
 
 export default DeleteInterview

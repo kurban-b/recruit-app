@@ -4,10 +4,7 @@ import Sidebar from './Sidebar'
 import Main from './Main'
 import Header from './Header/Header'
 
-
 function Dashboard () {
-
-
   return (
     <div style={{position: "relative"}}>
       <Grid container>

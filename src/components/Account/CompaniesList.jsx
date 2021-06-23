@@ -13,6 +13,7 @@ import {
 import { Add } from "@material-ui/icons";
 import ModalAddCompany from "./ModalAddCompany";
 import RowCompany from "./RowCompany";
+import { PropTypes } from 'prop-types'
 
 const useStyles = makeStyles(() => ({
   companies: {
@@ -66,6 +67,10 @@ function CompaniesList({ companies }) {
       </div>
     </div>
   );
+}
+
+CompaniesList.propTypes = {
+  companies: PropTypes.array.isRequired
 }
 
 export default CompaniesList;

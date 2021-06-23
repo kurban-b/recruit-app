@@ -14,6 +14,7 @@ import { notesSelector } from '../../../redux/selectors/notes'
 import BadgeNotes from './BadgeNotes'
 import Stages from './Stages'
 import AvatarForRow from './AvatarForRow'
+import PropTypes from 'prop-types'
 
 const useStyes = makeStyles((theme) => ({
   search: {
@@ -125,6 +126,10 @@ function ListClients({ clients }) {
       </Grid>
     </div>
   );
+}
+
+ListClients.propTypes = {
+  clients: PropTypes.array.isRequired
 }
 
 export default ListClients;

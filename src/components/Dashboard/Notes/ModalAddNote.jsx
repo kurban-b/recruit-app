@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Alert } from '@material-ui/lab'
 import { tokenSelector } from '../../../redux/selectors/auth'
 import { addNote } from '../../../redux/actions/notes'
+import { PropTypes } from 'prop-types'
 
 const useStayes = makeStyles(() => ({
   card: {
@@ -173,6 +174,17 @@ function ModalAddNote({ clients, id, modalClose}) {
       </CardContent>
     </Card>
   );
+}
+
+ModalAddNote.propTypes = {
+  clients: PropTypes.array,
+  id: PropTypes.number,
+  modalClose: PropTypes.func.isRequired
+}
+
+ModalAddNote.defaultProps = {
+  id: undefined,
+  clients: undefined
 }
 
 export default ModalAddNote;

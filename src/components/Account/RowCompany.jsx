@@ -3,6 +3,7 @@ import { Divider, IconButton, ListItem, ListItemSecondaryAction, ListItemText } 
 import { Delete } from '@material-ui/icons'
 import { deleteCompany } from '../../redux/actions/companies'
 import { useDispatch } from 'react-redux'
+import { PropTypes } from 'prop-types'
 
 function RowCompany ({company}) {
   const dispatch = useDispatch();
@@ -26,6 +27,10 @@ function RowCompany ({company}) {
       <Divider/>
     </>
   )
+}
+
+RowCompany.propTypes = {
+  company: PropTypes.object.isRequired
 }
 
 export default RowCompany

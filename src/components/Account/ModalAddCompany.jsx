@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Alert } from '@material-ui/lab'
 import { recruterSelector } from '../../redux/selectors/auth'
 import { addNewCompany } from '../../redux/actions/companies'
+import { PropTypes } from 'prop-types'
 
 const useStyles = makeStyles(()=>({
   title: {
@@ -84,6 +85,10 @@ function ModalAddCompany ({modalClose}) {
       </Card>
     </div>
   )
+}
+
+ModalAddCompany.propTypes = {
+  modalClose: PropTypes.func.isRequired
 }
 
 export default ModalAddCompany

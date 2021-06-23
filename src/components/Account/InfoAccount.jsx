@@ -12,6 +12,7 @@ import CompaniesList from "./CompaniesList";
 import { Alert } from "@material-ui/lab";
 import { saveChangesAccaunt } from '../../redux/actions/auth'
 import { loadinChangesSelector } from '../../redux/selectors/auth'
+import { PropTypes } from 'prop-types'
 
 const useStyes = makeStyles((theme) => ({
   input: {
@@ -161,6 +162,10 @@ function InfoAccount({ person }) {
       </Grid>
     </Grid>
   );
+}
+
+InfoAccount.propTypes = {
+  person: PropTypes.object.isRequired
 }
 
 export default InfoAccount;

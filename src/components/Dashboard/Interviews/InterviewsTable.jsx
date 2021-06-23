@@ -10,6 +10,7 @@ import {
 import Stages from "../Clients/Stages";
 import AvatarForRow from "../Clients/AvatarForRow";
 import DeleteInterview from "./Delete-Interview";
+import { PropTypes } from 'prop-types'
 
 const columns = [
   {
@@ -109,6 +110,11 @@ function InterviewsTable({ interviews, clients }) {
       />
     </div>
   );
+}
+
+InterviewsTable.propTypes = {
+  clients: PropTypes.array.isRequired,
+  interviews: PropTypes.array.isRequired
 }
 
 export default InterviewsTable;

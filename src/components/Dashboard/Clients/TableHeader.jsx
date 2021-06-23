@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, IconButton, InputAdornment, makeStyles, TextField, Typography } from '@material-ui/core'
 import { Delete, Search } from '@material-ui/icons'
+import { PropTypes } from 'prop-types'
 
 const useStyes = makeStyles((theme) => ({
   search: {
@@ -60,6 +61,12 @@ function TableHeader({ selectedClients, filter, setFilter}) {
       </Grid>
     </Grid>
   );
+}
+
+TableHeader.propTypes = {
+  selectedClients: PropTypes.array.isRequired,
+  filter: PropTypes.string.isRequired,
+  setFilter: PropTypes.func.isRequired
 }
 
 export default TableHeader;
