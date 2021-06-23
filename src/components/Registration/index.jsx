@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Button, Card, CardContent, Checkbox,
+  Button, Card, CardContent, Checkbox, CircularProgress,
   FormControl, FormControlLabel,
   Grid,
   IconButton,
@@ -14,9 +14,10 @@ import {
 
 import { Link } from 'react-router-dom'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { registrationStart } from '../../redux/actions/auth'
 import { Alert } from '@material-ui/lab'
+import { authErrorSelector, loadingRegistrationSelector } from '../../redux/selectors/auth'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -47,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
 function Registration() {
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const loading = useSelector(loadingRegistrationSelector);
+  const errorReg = useSelector(authErrorSelector)
+
+  console.log(errorReg)
 
   const [values, setValues] = useState({
     firstName: "",
@@ -247,14 +253,25 @@ function Registration() {
                 Заполните все поля!
               </Alert>
             ) : null}
+            {errorReg ? (
+              <Alert severity="warning" className={classes.error}>
+                Такой логин уже существует!
+              </Alert>
+            ) : null}
             <Button
               className={classes.btn}
               variant="contained"
               color="primary"
               size="large"
               onClick={handleRegistartion}
+              disabled={loading}
             >
-              Регистрация
+              {
+                loading ?
+                  <CircularProgress size={30}/>
+                  :
+                  'Регистрация'
+              }
             </Button>
             <br />
             <Button color="primary" component={Link} to="/auth/login">

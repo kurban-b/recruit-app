@@ -57,7 +57,7 @@ export const deleteInterview = (id) => {
       .then((res) => res.json())
       .then((json) => {
         dispatch({
-          type: "interviews/add/success",
+          type: "interviews/delete/success",
           payload: id
         });
       });

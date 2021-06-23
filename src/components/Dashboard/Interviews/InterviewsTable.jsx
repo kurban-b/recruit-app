@@ -44,7 +44,7 @@ const columns = [
       return (
         <Stages
           client={params.row}
-          id={params.row.client.id}
+          id={params.row.client && params.row.client.id}
           key={params.row.id}
         />
       );
@@ -78,10 +78,22 @@ function InterviewsTable({ interviews, clients }) {
       id: item.id,
       time: moment(item.date).locale("ru").format("LT"),
       date: moment(item.date).locale("ru").format("L"),
-      FullName: clients.find((client) => client.id === item.clientId).fullName,
-      stage: clients.find((client) => client.id === item.clientId).stage,
-      client: clients.find((client) => client.id === item.clientId),
-      email: clients.find((client) => client.id === item.clientId).email,
+      FullName:
+        clients.find((client) => client.id === item.clientId) !== undefined
+          ? clients.find((client) => client.id === item.clientId).fullName
+          : null,
+      stage:
+        clients.find((client) => client.id === item.clientId) !== undefined
+          ? clients.find((client) => client.id === item.clientId).stage
+          : null,
+      client:
+        clients.find((client) => client.id === item.clientId) !== undefined
+          ? clients.find((client) => client.id === item.clientId)
+          : null,
+      email:
+        clients.find((client) => client.id === item.clientId) !== undefined
+          ? clients.find((client) => client.id === item.clientId).email
+          : null,
     };
   });
 

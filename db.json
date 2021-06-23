@@ -96,27 +96,57 @@
   "interviews": [
     {
       "recruiterId": 1,
-      "clientId": 6,
-      "date": "2021-06-22T12:37:00+03:00",
-      "id": 3
-    },
-    {
-      "recruiterId": 1,
       "clientId": 2,
-      "date": "2021-06-01T12:49:00+03:00",
-      "id": 4
+      "date": "2021-06-23T12:39:00+03:00",
+      "id": 1
     },
     {
       "recruiterId": 1,
       "clientId": 3,
-      "date": "2021-06-26T14:50:00+03:00",
-      "id": 5
+      "date": "2021-06-23T12:43:00+03:00",
+      "id": 2
+    },
+    {
+      "recruiterId": 1,
+      "clientId": 6,
+      "date": "2021-06-23T12:43:00+03:00",
+      "id": 3
     },
     {
       "recruiterId": 1,
       "clientId": 4,
-      "date": "2021-06-29T16:50:00+03:00",
+      "date": "2021-06-06T00:00:00+03:00",
+      "id": 4
+    },
+    {
+      "recruiterId": 1,
+      "clientId": 1,
+      "date": "2021-06-09T00:00:00+03:00",
+      "id": 5
+    },
+    {
+      "recruiterId": 1,
+      "clientId": 5,
+      "date": "2021-06-19T00:00:00+03:00",
       "id": 6
+    },
+    {
+      "recruiterId": 1,
+      "clientId": 2,
+      "date": "2021-05-31T00:00:00+03:00",
+      "id": 7
+    },
+    {
+      "recruiterId": 1,
+      "clientId": 4,
+      "date": "2021-06-27T00:00:00+03:00",
+      "id": 8
+    },
+    {
+      "recruiterId": 1,
+      "clientId": 6,
+      "date": "2021-07-03T00:00:00+03:00",
+      "id": 9
     }
   ],
   "notes": [

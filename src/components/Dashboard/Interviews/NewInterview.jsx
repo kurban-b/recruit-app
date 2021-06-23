@@ -21,6 +21,7 @@ import { Save } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
 import { recruterSelector } from '../../../redux/selectors/auth'
 import { addInterview } from '../../../redux/actions/interviews'
+import PropTypes from 'prop-types';
 
 const useStyes = makeStyles((theme) => ({
   card: {
@@ -46,7 +47,7 @@ const useStyes = makeStyles((theme) => ({
   },
 }));
 
-function NewInterview({modalClose}) {
+function NewInterview({modalClose, date}) {
   const classes = useStyes();
   const dispatch = useDispatch();
 
@@ -55,7 +56,7 @@ function NewInterview({modalClose}) {
 
   const [values, setValues] = useState({
     clientId: "",
-    date: moment().format("YYYY-MM-DDTHH:mm"),
+    date: date,
     error: false,
   });
 
@@ -65,8 +66,9 @@ function NewInterview({modalClose}) {
 
   const handleSaveChanges = () => {
     setValues({ ...values, error: false });
-    if (values.clientId === "") {
+    if (values.clientId === "" || values.clientId === undefined) {
       setValues({ ...values, error: true });
+      return null
     }
     dispatch(addInterview(recruiter.id, values.clientId, moment(values.date).format()))
     modalClose(false)
@@ -149,6 +151,15 @@ function NewInterview({modalClose}) {
       </Card>
     </div>
   );
+}
+
+NewInterview.propTypes = {
+  modalClose: PropTypes.func.isRequired,
+  date: PropTypes.string
+}
+
+NewInterview.defaultProps = {
+  date: moment().format("YYYY-MM-DDTHH:mm"),
 }
 
 export default NewInterview;

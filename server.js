@@ -70,7 +70,7 @@ server.post("/recruiters", (req, res, next) => {
     res.status(400);
     res.send();
   } else if (loginCheck.toJSON()) {
-    res.status(400).json("Такой логин уже существует");
+    res.status(400).json({error: "Такой логин уже существует"});
     res.send();
   }
   req.body = { ...req.body, ...defaultDate };

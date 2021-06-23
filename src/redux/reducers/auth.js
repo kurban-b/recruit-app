@@ -4,7 +4,6 @@ const initialState = {
   loadingRegistration: false,
   loadingChanges: false,
   error: false,
-
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -32,9 +31,17 @@ export const authReducer = (state = initialState, action) => {
     case "auth/registration/start":
       return {
         ...state,
+        error: false,
         loadingRegistration: true
       }
     case "auth/registration/success":
+      if (action.payload.error !== undefined) {
+        return {
+          ...state,
+          loadingRegistration: false,
+          error: true
+        }
+      }
       if (action.checkbox) {
         localStorage.setItem("user", JSON.stringify(action.payload))
       }
