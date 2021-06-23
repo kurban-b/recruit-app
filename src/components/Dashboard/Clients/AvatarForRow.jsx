@@ -1,8 +1,8 @@
-import React from 'react'
-import { Avatar } from '@material-ui/core'
-import { PropTypes } from 'prop-types'
+import React from "react";
+import { Avatar } from "@material-ui/core";
+import { PropTypes } from "prop-types";
 
-function AvatarForRow ({ client }) {
+function AvatarForRow({ client }) {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <Avatar
@@ -12,11 +12,11 @@ function AvatarForRow ({ client }) {
       />
       <div style={{ marginLeft: "10px" }}>{client.FullName}</div>
     </div>
-  )
+  );
 }
 
 AvatarForRow.propTypes = {
-  client: PropTypes.object
-}
+  client: PropTypes.object,
+};
 
-export default AvatarForRow
+export default AvatarForRow;

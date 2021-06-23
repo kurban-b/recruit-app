@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
-  Button, Card, CardContent, Checkbox, CircularProgress,
-  FormControl, FormControlLabel,
+  Button,
+  Card,
+  CardContent,
+  Checkbox,
+  CircularProgress,
+  FormControl,
+  FormControlLabel,
   Grid,
   IconButton,
   InputAdornment,
@@ -10,14 +15,17 @@ import {
   OutlinedInput,
   TextField,
   Typography,
-} from '@material-ui/core'
+} from "@material-ui/core";
 
-import { Link } from 'react-router-dom'
-import { Visibility, VisibilityOff } from '@material-ui/icons'
-import { useDispatch, useSelector } from 'react-redux'
-import { registrationStart } from '../../redux/actions/auth'
-import { Alert } from '@material-ui/lab'
-import { authErrorSelector, loadingRegistrationSelector } from '../../redux/selectors/auth'
+import { Link } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { registrationStart } from "../../redux/actions/auth";
+import { Alert } from "@material-ui/lab";
+import {
+  authErrorSelector,
+  loadingRegistrationSelector,
+} from "../../redux/selectors/auth";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -50,9 +58,9 @@ function Registration() {
   const classes = useStyles();
 
   const loading = useSelector(loadingRegistrationSelector);
-  const errorReg = useSelector(authErrorSelector)
+  const errorReg = useSelector(authErrorSelector);
 
-  console.log(errorReg)
+  console.log(errorReg);
 
   const [values, setValues] = useState({
     firstName: "",
@@ -65,7 +73,7 @@ function Registration() {
     repeatShowPassword: false,
     errorRepeatPassword: false,
     error: false,
-    checkbox: false
+    checkbox: false,
   });
 
   const handleChangeFirstName = (prop) => (event) => {
@@ -136,12 +144,8 @@ function Registration() {
   return (
     <div className={classes.registration}>
       <Card className={classes.registrationBlock}>
-        <CardContent >
-          <Grid
-            container
-            direction="column"
-            justify="center"
-          >
+        <CardContent>
+          <Grid container direction="column" justify="center">
             <Typography
               className={classes.title}
               component="h3"
@@ -184,7 +188,9 @@ function Registration() {
               onChange={handleChangeLogin("login")}
             />
             <FormControl className={classes.input} variant="outlined" required>
-              <InputLabel htmlFor="outlined-adornment-password">Пароль</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password">
+                Пароль
+              </InputLabel>
               <OutlinedInput
                 type={values.showPassword ? "text" : "password"}
                 value={values.password}
@@ -266,12 +272,7 @@ function Registration() {
               onClick={handleRegistartion}
               disabled={loading}
             >
-              {
-                loading ?
-                  <CircularProgress size={30}/>
-                  :
-                  'Регистрация'
-              }
+              {loading ? <CircularProgress size={30} /> : "Регистрация"}
             </Button>
             <br />
             <Button color="primary" component={Link} to="/auth/login">
@@ -280,7 +281,6 @@ function Registration() {
           </Grid>
         </CardContent>
       </Card>
-
     </div>
   );
 }

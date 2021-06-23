@@ -1,53 +1,60 @@
-import React, { useState } from 'react'
-import { Button, Card, CardContent, makeStyles, TextField, Typography } from '@material-ui/core'
-import { Add } from '@material-ui/icons'
-import { useDispatch, useSelector } from 'react-redux'
-import { Alert } from '@material-ui/lab'
-import { recruterSelector } from '../../redux/selectors/auth'
-import { addNewCompany } from '../../redux/actions/companies'
-import { PropTypes } from 'prop-types'
+import React, { useState } from "react";
+import {
+  Button,
+  Card,
+  CardContent,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { Add } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "@material-ui/lab";
+import { recruterSelector } from "../../redux/selectors/auth";
+import { addNewCompany } from "../../redux/actions/companies";
+import { PropTypes } from "prop-types";
 
-const useStyles = makeStyles(()=>({
+const useStyles = makeStyles(() => ({
   title: {
-    margin: "10px 10px 30px 10px"
+    margin: "10px 10px 30px 10px",
   },
   buttonWrap: {
-    margin: '20px 0',
-    display: 'flex',
-    justifyContent: "center"
+    margin: "20px 0",
+    display: "flex",
+    justifyContent: "center",
   },
   input: {
-    width: "100%"
+    width: "100%",
   },
   error: {
-    margin: '20px 0'
-  }
-}))
+    margin: "20px 0",
+  },
+}));
 
-function ModalAddCompany ({modalClose}) {
+function ModalAddCompany({ modalClose }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const recruiter = useSelector(recruterSelector)
+  const recruiter = useSelector(recruterSelector);
 
   const [value, setValue] = useState({
-    company: '',
-    error: false
-  })
+    company: "",
+    error: false,
+  });
 
   const handleChangeCompany = (prop) => (event) => {
-    setValue({...value, [prop]:event.target.value})
-  }
+    setValue({ ...value, [prop]: event.target.value });
+  };
 
   const handleAddCompany = () => {
-    setValue({...value, error: false})
-    if (value.company === '') {
-      setValue({...value, error: true})
-      return null
+    setValue({ ...value, error: false });
+    if (value.company === "") {
+      setValue({ ...value, error: true });
+      return null;
     }
-    dispatch(addNewCompany(value.company, recruiter.id))
-    modalClose(false)
-  }
+    dispatch(addNewCompany(value.company, recruiter.id));
+    modalClose(false);
+  };
 
   return (
     <div>
@@ -62,14 +69,13 @@ function ModalAddCompany ({modalClose}) {
             variant="outlined"
             className={classes.input}
             value={value.company}
-            onChange={handleChangeCompany('company')}
+            onChange={handleChangeCompany("company")}
           />
-          {
-            value.error &&
+          {value.error && (
             <Alert severity="warning" className={classes.error}>
               Заполните поле наименования компании!
             </Alert>
-          }
+          )}
           <div className={classes.buttonWrap}>
             <Button
               variant="contained"
@@ -84,11 +90,11 @@ function ModalAddCompany ({modalClose}) {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
 
 ModalAddCompany.propTypes = {
-  modalClose: PropTypes.func.isRequired
-}
+  modalClose: PropTypes.func.isRequired,
+};
 
-export default ModalAddCompany
+export default ModalAddCompany;

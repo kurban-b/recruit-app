@@ -8,12 +8,18 @@ import {
   makeStyles,
   Popover,
 } from "@material-ui/core";
-import { Archive, Delete, MoreVert, Settings, Unarchive } from '@material-ui/icons'
-import { useDispatch, useSelector } from 'react-redux'
+import {
+  Archive,
+  Delete,
+  MoreVert,
+  Settings,
+  Unarchive,
+} from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { clientsSelector } from "../../../redux/selectors/clients";
-import { deleteClient, toggleArchive } from '../../../redux/actions/clients'
-import { PropTypes } from 'prop-types'
+import { deleteClient, toggleArchive } from "../../../redux/actions/clients";
+import { PropTypes } from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MenuRow({clientId, archive}) {
+function MenuRow({ clientId, archive }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -44,12 +50,12 @@ function MenuRow({clientId, archive}) {
   };
 
   const handleDelete = () => {
-    dispatch(deleteClient(clientId))
-  }
+    dispatch(deleteClient(clientId));
+  };
 
   const handleArchive = () => {
-    dispatch(toggleArchive(clientId, archive))
-  }
+    dispatch(toggleArchive(clientId, archive));
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -85,22 +91,24 @@ function MenuRow({clientId, archive}) {
               />
             </ListItem>
           </Link>
-          {
-            archive ?
-              <ListItem button className={classes.icon} onClick={handleArchive}>
-                <ListItemIcon>
-                  <Unarchive />
-                </ListItemIcon>
-                <ListItemText secondary="Изъять из архива" className={classes.text} />
-              </ListItem>
-              :
-              <ListItem button className={classes.icon} onClick={handleArchive}>
-                <ListItemIcon>
-                  <Archive />
-                </ListItemIcon>
-                <ListItemText secondary="В архив" className={classes.text} />
-              </ListItem>
-          }
+          {archive ? (
+            <ListItem button className={classes.icon} onClick={handleArchive}>
+              <ListItemIcon>
+                <Unarchive />
+              </ListItemIcon>
+              <ListItemText
+                secondary="Изъять из архива"
+                className={classes.text}
+              />
+            </ListItem>
+          ) : (
+            <ListItem button className={classes.icon} onClick={handleArchive}>
+              <ListItemIcon>
+                <Archive />
+              </ListItemIcon>
+              <ListItemText secondary="В архив" className={classes.text} />
+            </ListItem>
+          )}
           <ListItem button className={classes.icon} onClick={handleDelete}>
             <ListItemIcon>
               <Delete />
@@ -115,7 +123,7 @@ function MenuRow({clientId, archive}) {
 
 MenuRow.propTypes = {
   archive: PropTypes.bool.isRequired,
-  clientId: PropTypes.number.isRequired
-}
+  clientId: PropTypes.number.isRequired,
+};
 
 export default MenuRow;

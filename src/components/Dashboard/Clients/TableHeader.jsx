@@ -1,7 +1,14 @@
 import React from "react";
-import { Grid, IconButton, InputAdornment, makeStyles, TextField, Typography } from '@material-ui/core'
-import { Delete, Search } from '@material-ui/icons'
-import { PropTypes } from 'prop-types'
+import {
+  Grid,
+  IconButton,
+  InputAdornment,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { Delete, Search } from "@material-ui/icons";
+import { PropTypes } from "prop-types";
 
 const useStyes = makeStyles((theme) => ({
   search: {
@@ -12,18 +19,18 @@ const useStyes = makeStyles((theme) => ({
   },
   selectedWrap: {
     padding: "5px 20px 5px 300px",
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  }
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
 }));
 
-function TableHeader({ selectedClients, filter, setFilter}) {
+function TableHeader({ selectedClients, filter, setFilter }) {
   const classes = useStyes();
 
   const handleChange = (event) => {
-    setFilter(event.target.value)
-  }
+    setFilter(event.target.value);
+  };
 
   return (
     <Grid container>
@@ -48,14 +55,13 @@ function TableHeader({ selectedClients, filter, setFilter}) {
         <div className={classes.selectedWrap}>
           {selectedClients.length > 0 && (
             <>
-              <Typography variant={'subtitle2'} component="h4">
+              <Typography variant={"subtitle2"} component="h4">
                 Выбрано {selectedClients.length}
               </Typography>
               <IconButton edge="end" aria-label="delete">
                 <Delete />
               </IconButton>
             </>
-
           )}
         </div>
       </Grid>
@@ -66,7 +72,7 @@ function TableHeader({ selectedClients, filter, setFilter}) {
 TableHeader.propTypes = {
   selectedClients: PropTypes.array.isRequired,
   filter: PropTypes.string.isRequired,
-  setFilter: PropTypes.func.isRequired
-}
+  setFilter: PropTypes.func.isRequired,
+};
 
 export default TableHeader;

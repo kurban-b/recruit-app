@@ -1,9 +1,10 @@
 const jsonServer = require("json-server");
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
-const middlewares = jsonServer.defaults();
+const middlewares = jsonServer.defaults({
+  static: "/build"
+});
 
-const PORT = 5000;
 const recruiters = router.db.get("recruiters");
 const clients = router.db.get("clients");
 const notes = router.db.get("notes");
@@ -187,6 +188,6 @@ server.get("/interviews", authRecruiter, (req, res) => {
 });
 
 server.use(router);
-server.listen(PORT, () => {
-  console.log(`SERVER STARTED ON PORT: ${PORT}`);
+server.listen(process.env.PORT || 5000, () => {
+  console.log(`SERVER STARTED ON PORT: ${process.env.PORT || 5000}`);
 });

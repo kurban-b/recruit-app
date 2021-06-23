@@ -1,69 +1,68 @@
 export const loadingNotes = (token) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: "notes/load/start",
-    })
+    });
 
-    fetch('http://localhost:5000/notes', {
-      method: 'GET',
+    fetch("/notes", {
+      method: "GET",
       headers: {
-        "token": token
-      }
+        token: token,
+      },
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         dispatch({
-          type: 'notes/load/success',
-          payload: json
-        })
-      })
-  }
-}
+          type: "notes/load/success",
+          payload: json,
+        });
+      });
+  };
+};
 
 export const addNote = (title, text, clientId, token) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
-      type: 'notes/add/start'
-    })
+      type: "notes/add/start",
+    });
 
-    fetch('http://localhost:5000/notes', {
-      method: 'POST',
+    fetch("/notes", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        token: token
+        "Content-Type": "application/json",
+        token: token,
       },
       body: JSON.stringify({
         title: title,
         content: text,
-        clientId: clientId
-      })
+        clientId: clientId,
+      }),
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         dispatch({
-          type: 'notes/add/success',
-          payload: json
-        })
-      })
-  }
-}
+          type: "notes/add/success",
+          payload: json,
+        });
+      });
+  };
+};
 
 export const deleteNote = (id) => {
-  return dispatch => {
-
+  return (dispatch) => {
     dispatch({
-      type: 'notes/delete/start'
-    })
+      type: "notes/delete/start",
+    });
 
-    fetch(`http://localhost:5000/notes/${id}`, {
-      method: 'DELETE'
+    fetch(`/notes/${id}`, {
+      method: "DELETE",
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         dispatch({
-          type: 'notes/delete/success',
-          payload: id
-        })
-      })
-  }
-}
+          type: "notes/delete/success",
+          payload: id,
+        });
+      });
+  };
+};

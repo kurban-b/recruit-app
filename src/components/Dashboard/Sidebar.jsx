@@ -14,15 +14,15 @@ import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 import TodayIcon from "@material-ui/icons/Today";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { recruterSelector } from '../../redux/selectors/auth'
+import { recruterSelector } from "../../redux/selectors/auth";
 
 const useStyes = makeStyles((theme) => ({
   sidebar: {
     borderRight: "1.2px solid rgba(200,200,200,.4)",
     minHeight: "100vh",
     padding: "20px 0",
-    position: 'fixed',
-    width: '25%'
+    position: "fixed",
+    width: "25%",
   },
   profile: {
     backgroundColor: "rgba(186,186,186,0.21)",

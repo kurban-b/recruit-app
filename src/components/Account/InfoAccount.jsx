@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import {
-  Button, CircularProgress,
+  Button,
+  CircularProgress,
   Grid,
-  makeStyles, Snackbar,
+  makeStyles,
+  Snackbar,
   TextField,
-} from '@material-ui/core'
+} from "@material-ui/core";
 import { Save } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { companiesSelector } from "../../redux/selectors/companies";
 import CompaniesList from "./CompaniesList";
 import { Alert } from "@material-ui/lab";
-import { saveChangesAccaunt } from '../../redux/actions/auth'
-import { loadinChangesSelector } from '../../redux/selectors/auth'
-import { PropTypes } from 'prop-types'
+import { saveChangesAccaunt } from "../../redux/actions/auth";
+import { loadinChangesSelector } from "../../redux/selectors/auth";
+import { PropTypes } from "prop-types";
 
 const useStyes = makeStyles((theme) => ({
   input: {
@@ -29,15 +31,12 @@ const useStyes = makeStyles((theme) => ({
   },
 }));
 
-
-
 function InfoAccount({ person }) {
   const classes = useStyes();
   const dispatch = useDispatch();
 
-
   const companies = useSelector(companiesSelector);
-  const loadinChanges = useSelector(loadinChangesSelector)
+  const loadinChanges = useSelector(loadinChangesSelector);
 
   const [value, setValue] = useState({
     login: person.login,
@@ -47,7 +46,7 @@ function InfoAccount({ person }) {
     phone: person.phone,
     address: person.address,
     error: false,
-    modalMessage: false
+    modalMessage: false,
   });
 
   const handleChange = (prop) => (event) => {
@@ -76,7 +75,7 @@ function InfoAccount({ person }) {
         value.address
       )
     );
-    setValue({...value, modalMessage: true})
+    setValue({ ...value, modalMessage: true });
   };
 
   return (
@@ -142,7 +141,7 @@ function InfoAccount({ person }) {
         <Button
           variant="contained"
           color="secondary"
-          startIcon={loadinChanges ? <CircularProgress size={16}/> : <Save />}
+          startIcon={loadinChanges ? <CircularProgress size={16} /> : <Save />}
           onClick={handleSaveChanges}
           disabled={loadinChanges}
         >
@@ -150,14 +149,16 @@ function InfoAccount({ person }) {
         </Button>
         <Snackbar
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           open={value.modalMessage}
           autoHideDuration={2000}
-          onClose={() => setValue({...value, modalMessage: false})}
+          onClose={() => setValue({ ...value, modalMessage: false })}
         >
-          <Alert variant='filled' severity="success">Данные изменены!</Alert>
+          <Alert variant="filled" severity="success">
+            Данные изменены!
+          </Alert>
         </Snackbar>
       </Grid>
     </Grid>
@@ -165,7 +166,7 @@ function InfoAccount({ person }) {
 }
 
 InfoAccount.propTypes = {
-  person: PropTypes.object.isRequired
-}
+  person: PropTypes.object.isRequired,
+};
 
 export default InfoAccount;

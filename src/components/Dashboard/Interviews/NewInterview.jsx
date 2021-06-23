@@ -14,14 +14,14 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { clientsSelector } from "../../../redux/selectors/clients";
 import moment from "moment";
 import { Save } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
-import { recruterSelector } from '../../../redux/selectors/auth'
-import { addInterview } from '../../../redux/actions/interviews'
-import PropTypes from 'prop-types';
+import { recruterSelector } from "../../../redux/selectors/auth";
+import { addInterview } from "../../../redux/actions/interviews";
+import PropTypes from "prop-types";
 
 const useStyes = makeStyles((theme) => ({
   card: {
@@ -47,7 +47,7 @@ const useStyes = makeStyles((theme) => ({
   },
 }));
 
-function NewInterview({modalClose, date}) {
+function NewInterview({ modalClose, date }) {
   const classes = useStyes();
   const dispatch = useDispatch();
 
@@ -68,10 +68,12 @@ function NewInterview({modalClose, date}) {
     setValues({ ...values, error: false });
     if (values.clientId === "" || values.clientId === undefined) {
       setValues({ ...values, error: true });
-      return null
+      return null;
     }
-    dispatch(addInterview(recruiter.id, values.clientId, moment(values.date).format()))
-    modalClose(false)
+    dispatch(
+      addInterview(recruiter.id, values.clientId, moment(values.date).format())
+    );
+    modalClose(false);
   };
 
   return (
@@ -155,11 +157,11 @@ function NewInterview({modalClose, date}) {
 
 NewInterview.propTypes = {
   modalClose: PropTypes.func.isRequired,
-  date: PropTypes.string
-}
+  date: PropTypes.string,
+};
 
 NewInterview.defaultProps = {
   date: moment().format("YYYY-MM-DDTHH:mm"),
-}
+};
 
 export default NewInterview;

@@ -19,7 +19,7 @@ import { recruterSelector } from "../../../redux/selectors/auth";
 import { saveChangesClient } from "../../../redux/actions/clients";
 import { Alert } from "@material-ui/lab";
 import { clientsLoadingUpdateSelector } from "../../../redux/selectors/clients";
-import { PropTypes } from 'prop-types'
+import { PropTypes } from "prop-types";
 
 const useStyes = makeStyles((theme) => ({
   input: {
@@ -31,9 +31,9 @@ const useStyes = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   error: {
-    marginBottom: '10px',
-    width: '100%'
-  }
+    marginBottom: "10px",
+    width: "100%",
+  },
 }));
 
 function ProfileInfo({ client }) {
@@ -131,7 +131,12 @@ function ProfileInfo({ client }) {
           onChange={handleChange("specialty")}
         />
 
-        <FormControl variant="outlined" className={classes.input} size="small" required>
+        <FormControl
+          variant="outlined"
+          className={classes.input}
+          size="small"
+          required
+        >
           <InputLabel id="demo-simple-select-outlined-label">
             Компания
           </InputLabel>
@@ -144,7 +149,11 @@ function ProfileInfo({ client }) {
             displayEmpty={true}
           >
             {companies.map((item, index) => {
-              return <MenuItem value={item.id} key={index}>{item.name}</MenuItem>;
+              return (
+                <MenuItem value={item.id} key={index}>
+                  {item.name}
+                </MenuItem>
+              );
             })}
           </Select>
         </FormControl>
@@ -197,7 +206,7 @@ function ProfileInfo({ client }) {
 }
 
 ProfileInfo.propTypes = {
-  client: PropTypes.object.isRequired
-}
+  client: PropTypes.object.isRequired,
+};
 
 export default ProfileInfo;

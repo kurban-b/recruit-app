@@ -1,6 +1,6 @@
-import React from 'react'
-import { AppBar, makeStyles, Toolbar } from '@material-ui/core'
-import AvatarMenu from './AvatarMenu'
+import React from "react";
+import { AppBar, makeStyles, Toolbar } from "@material-ui/core";
+import AvatarMenu from "./AvatarMenu";
 
 const useStyes = makeStyles((theme) => ({
   header: {
@@ -9,19 +9,18 @@ const useStyes = makeStyles((theme) => ({
     width: "75%",
     right: 0,
     backgroundColor: "rgba(255,255,255,0.95)",
-    zIndex: '1000',
-    display: 'flex',
-    justifyContent: 'flex-end'
+    zIndex: "1000",
+    display: "flex",
+    justifyContent: "flex-end",
   },
   navbar: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
 }));
 
-
-function Header () {
+function Header() {
   const classes = useStyes();
   return (
     <div className={classes.wrapper}>
@@ -35,7 +34,7 @@ function Header () {
         </AppBar>
       </div>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

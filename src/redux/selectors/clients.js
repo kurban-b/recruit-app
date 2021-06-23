@@ -48,4 +48,3 @@ export const clientsLoadingUpdateSelector = createSelector(
   loadingUpdate,
   (loadingUpdate) => loadingUpdate
 );
-

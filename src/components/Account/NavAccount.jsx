@@ -1,14 +1,14 @@
-import React from 'react'
-import { Breadcrumbs, makeStyles } from '@material-ui/core'
-import { AccountBox, VpnKey } from '@material-ui/icons'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Breadcrumbs, makeStyles } from "@material-ui/core";
+import { AccountBox, VpnKey } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const useStyes = makeStyles((theme) => ({
   nav: {
-    margin: "20px 0"
+    margin: "20px 0",
   },
   link: {
-    display: 'flex',
+    display: "flex",
   },
   icon: {
     marginRight: theme.spacing(0.5),
@@ -17,7 +17,7 @@ const useStyes = makeStyles((theme) => ({
   },
 }));
 
-function NavAccount () {
+function NavAccount() {
   const classes = useStyes();
 
   return (
@@ -26,15 +26,12 @@ function NavAccount () {
         <AccountBox className={classes.icon} />
         Редактировать профиль
       </Link>
-      <Link
-        className={classes.link}
-        to="/dashboard/account/changePassword"
-      >
+      <Link className={classes.link} to="/dashboard/account/changePassword">
         <VpnKey className={classes.icon} />
         Изменить пароль
       </Link>
     </Breadcrumbs>
-  )
+  );
 }
 
-export default NavAccount
+export default NavAccount;

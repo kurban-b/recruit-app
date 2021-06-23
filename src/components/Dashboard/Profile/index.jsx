@@ -2,16 +2,17 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import {
   Card,
-  CardContent, Chip,
+  CardContent,
+  Chip,
   Grid,
   makeStyles,
   Typography,
-} from '@material-ui/core'
+} from "@material-ui/core";
 import AvatarOfAccount from "../../Account/AvatarOfAccount";
-import ProfileInfo from './ProfileInfo'
-import { useSelector } from 'react-redux'
-import { stagesSelector } from '../../../redux/selectors/stages'
-import { PropTypes } from 'prop-types'
+import ProfileInfo from "./ProfileInfo";
+import { useSelector } from "react-redux";
+import { stagesSelector } from "../../../redux/selectors/stages";
+import { PropTypes } from "prop-types";
 
 const useStyes = makeStyles((theme) => ({
   avatarCard: {
@@ -21,13 +22,13 @@ const useStyes = makeStyles((theme) => ({
     padding: "20px",
   },
   chipBox: {
-    display: 'flex',
+    display: "flex",
     justifyContent: "flex-end",
-    width: '100%'
+    width: "100%",
   },
   title: {
-    marginBottom: '20px'
-  }
+    marginBottom: "20px",
+  },
 }));
 
 function Profile({ clients }) {
@@ -37,7 +38,9 @@ function Profile({ clients }) {
 
   const client = clients.find((item) => item.id === Number(id));
 
-  const stage = useSelector(stagesSelector).find(item => item.id === client.stageId)
+  const stage = useSelector(stagesSelector).find(
+    (item) => item.id === client.stageId
+  );
 
   return (
     <div>
@@ -54,11 +57,11 @@ function Profile({ clients }) {
                 <Chip
                   style={{
                     display: "flex",
-                    justifyContent: "flex-end"
+                    justifyContent: "flex-end",
                   }}
                   size="small"
                   label={stage === undefined ? null : stage.name}
-                  color={'primary'}
+                  color={"primary"}
                   variant="default"
                 />
               </div>
@@ -79,7 +82,7 @@ function Profile({ clients }) {
 }
 
 Profile.propTypes = {
-  clients: PropTypes.array.isRequired
-}
+  clients: PropTypes.array.isRequired,
+};
 
 export default Profile;

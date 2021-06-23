@@ -13,11 +13,11 @@ import {
   Typography,
 } from "@material-ui/core";
 import { NoteAdd } from "@material-ui/icons";
-import { useDispatch, useSelector } from 'react-redux'
-import { Alert } from '@material-ui/lab'
-import { tokenSelector } from '../../../redux/selectors/auth'
-import { addNote } from '../../../redux/actions/notes'
-import { PropTypes } from 'prop-types'
+import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "@material-ui/lab";
+import { tokenSelector } from "../../../redux/selectors/auth";
+import { addNote } from "../../../redux/actions/notes";
+import { PropTypes } from "prop-types";
 
 const useStayes = makeStyles(() => ({
   card: {
@@ -46,58 +46,55 @@ const useStayes = makeStyles(() => ({
     justifyContent: "flex-end",
   },
   error: {
-    marginBottom: '5px'
-  }
+    marginBottom: "5px",
+  },
 }));
 
-function ModalAddNote({ clients, id, modalClose}) {
+function ModalAddNote({ clients, id, modalClose }) {
   const classes = useStayes();
 
   const dispatch = useDispatch();
 
-  const token = useSelector(tokenSelector)
+  const token = useSelector(tokenSelector);
 
   const [value, setValue] = useState({
-    clientId: '',
-    title: '',
-    text: '',
+    clientId: "",
+    title: "",
+    text: "",
     errorClient: false,
     error: false,
   });
 
   const handleChange = (prop) => (event) => {
-    setValue({...value, [prop]:event.target.value});
+    setValue({ ...value, [prop]: event.target.value });
   };
 
   const handleChangeTitle = (prop) => (event) => {
-    setValue({...value, [prop]: event.target.value})
-  }
+    setValue({ ...value, [prop]: event.target.value });
+  };
 
   const handleChangeText = (prop) => (event) => {
-    setValue({...value, [prop]: event.target.value})
-  }
+    setValue({ ...value, [prop]: event.target.value });
+  };
 
   const handleClick = () => {
-    setValue({...value, errorClient: false, error: false})
-    if (value.title === '' || value.text === '') {
-      setValue({...value, error: true})
-      return null
+    setValue({ ...value, errorClient: false, error: false });
+    if (value.title === "" || value.text === "") {
+      setValue({ ...value, error: true });
+      return null;
     }
     if (id === undefined) {
-      if (value.clientId === '' || value.clientId === undefined) {
-        setValue({...value, errorClient: true})
-        return null
+      if (value.clientId === "" || value.clientId === undefined) {
+        setValue({ ...value, errorClient: true });
+        return null;
       }
-      dispatch(addNote(value.title, value.text, value.clientId, token))
-      modalClose(false)
-      return null
+      dispatch(addNote(value.title, value.text, value.clientId, token));
+      modalClose(false);
+      return null;
     }
-    dispatch(addNote(value.title, value.text, id, token))
-    modalClose(false)
-
-  }
-
-
+    dispatch(addNote(value.title, value.text, id, token));
+    modalClose(false);
+  };
 
   return (
     <Card className={classes.card}>
@@ -117,13 +114,17 @@ function ModalAddNote({ clients, id, modalClose}) {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              label='Соискатель'
+              label="Соискатель"
               value={value.clientId}
-              onChange={handleChange('clientId')}
+              onChange={handleChange("clientId")}
               displayEmpty={true}
             >
               {clients.map((item) => {
-                return <MenuItem value={item.id} key={item.id}>{item.fullName}</MenuItem>;
+                return (
+                  <MenuItem value={item.id} key={item.id}>
+                    {item.fullName}
+                  </MenuItem>
+                );
               })}
             </Select>
           </FormControl>
@@ -135,7 +136,7 @@ function ModalAddNote({ clients, id, modalClose}) {
           className={classes.input}
           size="small"
           value={value.title}
-          onChange={handleChangeTitle('title')}
+          onChange={handleChangeTitle("title")}
         />
         <TextareaAutosize
           aria-label="empty textarea"
@@ -143,22 +144,20 @@ function ModalAddNote({ clients, id, modalClose}) {
           rowsMin={3}
           className={classes.text}
           value={value.text}
-          onChange={handleChangeText('text')}
+          onChange={handleChangeText("text")}
         />
 
-        {
-          value.errorClient &&
+        {value.errorClient && (
           <Alert severity="error" className={classes.error}>
             Выберите соискателя!
           </Alert>
-        }
+        )}
 
-        {
-          value.error &&
+        {value.error && (
           <Alert severity="warning" className={classes.error}>
             Заполните все поля!
           </Alert>
-        }
+        )}
 
         <div className={classes.btnWrap}>
           <Button
@@ -179,12 +178,12 @@ function ModalAddNote({ clients, id, modalClose}) {
 ModalAddNote.propTypes = {
   clients: PropTypes.array,
   id: PropTypes.number,
-  modalClose: PropTypes.func.isRequired
-}
+  modalClose: PropTypes.func.isRequired,
+};
 
 ModalAddNote.defaultProps = {
   id: undefined,
-  clients: undefined
-}
+  clients: undefined,
+};
 
 export default ModalAddNote;

@@ -4,7 +4,7 @@ export const loadingInterviews = (token) => {
       type: "interviews/load/start",
     });
 
-    fetch("http://localhost:5000/interviews", {
+    fetch("/interviews", {
       method: "GET",
       headers: {
         token: token,
@@ -26,7 +26,7 @@ export const addInterview = (id, clientId, date) => {
       type: "interviews/add/start",
     });
 
-    fetch("http://localhost:5000/interviews", {
+    fetch("/interviews", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -51,14 +51,14 @@ export const deleteInterview = (id) => {
       type: "interviews/delete/start",
     });
 
-    fetch(`http://localhost:5000/interviews/${id}`, {
+    fetch(`/interviews/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((json) => {
         dispatch({
           type: "interviews/delete/success",
-          payload: id
+          payload: id,
         });
       });
   };

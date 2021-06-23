@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { useSelector } from "react-redux";
-import {
-  Grid,
-  makeStyles
-} from '@material-ui/core'
+import { Grid, makeStyles } from "@material-ui/core";
 import MenuRow from "./MenuRow";
-import {
-  clientsLoadingSelector,
-} from "../../../redux/selectors/clients";
-import TableHeader from './TableHeader'
-import { notesSelector } from '../../../redux/selectors/notes'
-import BadgeNotes from './BadgeNotes'
-import Stages from './Stages'
-import AvatarForRow from './AvatarForRow'
-import PropTypes from 'prop-types'
+import { clientsLoadingSelector } from "../../../redux/selectors/clients";
+import TableHeader from "./TableHeader";
+import { notesSelector } from "../../../redux/selectors/notes";
+import BadgeNotes from "./BadgeNotes";
+import Stages from "./Stages";
+import AvatarForRow from "./AvatarForRow";
+import PropTypes from "prop-types";
 
 const useStyes = makeStyles((theme) => ({
   search: {
@@ -24,8 +19,8 @@ const useStyes = makeStyles((theme) => ({
     color: "#ccc",
   },
   grid: {
-    border: 'none'
-  }
+    border: "none",
+  },
 }));
 
 const columns = [
@@ -34,7 +29,7 @@ const columns = [
     headerName: "Имя",
     width: 240,
     renderCell: (params) => {
-      return <AvatarForRow client={params.row} key={params.row.id}/>
+      return <AvatarForRow client={params.row} key={params.row.id} />;
     },
   },
   { field: "company", headerName: "Компания", width: 150 },
@@ -44,7 +39,9 @@ const columns = [
     headerName: "Статус",
     width: 150,
     renderCell: (params) => {
-      return <Stages client={params.row} id={params.row.id} key={params.row.id}/>
+      return (
+        <Stages client={params.row} id={params.row.id} key={params.row.id} />
+      );
     },
   },
   {
@@ -55,8 +52,12 @@ const columns = [
     sortable: false,
     renderCell: (params) => {
       return (
-        <BadgeNotes notes={params.row.notes} clientId={params.row.id} key={params.row.id}/>
-      )
+        <BadgeNotes
+          notes={params.row.notes}
+          clientId={params.row.id}
+          key={params.row.id}
+        />
+      );
     },
   },
   {
@@ -66,7 +67,13 @@ const columns = [
     disableColumnMenu: true,
     sortable: false,
     renderCell: (params) => {
-      return <MenuRow clientId={params.row.id} archive={params.row.archive} key={params.row.id}/>;
+      return (
+        <MenuRow
+          clientId={params.row.id}
+          archive={params.row.archive}
+          key={params.row.id}
+        />
+      );
     },
   },
 ];
@@ -74,29 +81,34 @@ const columns = [
 function ListClients({ clients }) {
   const classes = useStyes();
 
-  const notes = useSelector(notesSelector)
+  const notes = useSelector(notesSelector);
 
   const [selectedClients, setSelectedClients] = useState([]);
 
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState("");
 
   const load = useSelector(clientsLoadingSelector);
 
   const row =
     clients === undefined
       ? []
-      : clients.map((client) => {
-          return {
-            id: client.id,
-            FullName: client.fullName,
-            company: client.company,
-            specialty: client.specialty,
-            stage: client.stage,
-            archive: client.archive,
-            notes: notes.filter(note => note.clientId === client.id),
-            stageId: client.stageId
-          };
-        }).filter(client => client.FullName.toUpperCase().indexOf(filter.toUpperCase()) > -1)
+      : clients
+          .map((client) => {
+            return {
+              id: client.id,
+              FullName: client.fullName,
+              company: client.company,
+              specialty: client.specialty,
+              stage: client.stage,
+              archive: client.archive,
+              notes: notes.filter((note) => note.clientId === client.id),
+              stageId: client.stageId,
+            };
+          })
+          .filter(
+            (client) =>
+              client.FullName.toUpperCase().indexOf(filter.toUpperCase()) > -1
+          );
 
   return (
     <div
@@ -106,7 +118,11 @@ function ListClients({ clients }) {
       }}
     >
       <Grid container>
-        <TableHeader selectedClients={selectedClients} filter={filter} setFilter={setFilter}/>
+        <TableHeader
+          selectedClients={selectedClients}
+          filter={filter}
+          setFilter={setFilter}
+        />
         <Grid item md={12}>
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid
@@ -129,7 +145,7 @@ function ListClients({ clients }) {
 }
 
 ListClients.propTypes = {
-  clients: PropTypes.array.isRequired
-}
+  clients: PropTypes.array.isRequired,
+};
 
 export default ListClients;

@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
-import { Button, Dialog, Grid, makeStyles, Typography } from '@material-ui/core'
-import { Add } from '@material-ui/icons'
-import NewInterview from './NewInterview'
+import React, { useState } from "react";
+import {
+  Button,
+  Dialog,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import { Add } from "@material-ui/icons";
+import NewInterview from "./NewInterview";
 
 const useStyes = makeStyles((theme) => ({
   header: {
@@ -60,10 +66,10 @@ function InterviewsTableHeader() {
         </Grid>
       </Grid>
       <Dialog open={open} onClose={handleModalClose}>
-        <NewInterview modalClose={setOpen}/>
+        <NewInterview modalClose={setOpen} />
       </Dialog>
     </div>
   );
 }
 
-export default InterviewsTableHeader
+export default InterviewsTableHeader;

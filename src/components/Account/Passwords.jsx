@@ -11,10 +11,11 @@ import {
 import { SaveAlt, Visibility, VisibilityOff } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  authErrorSelector, loadinChangesSelector,
+  authErrorSelector,
+  loadinChangesSelector,
   recruterSelector,
   tokenSelector,
-} from '../../redux/selectors/auth'
+} from "../../redux/selectors/auth";
 import { changePassword } from "../../redux/actions/auth";
 import { Alert } from "@material-ui/lab";
 
@@ -35,7 +36,7 @@ function Passwords() {
   const recruiter = useSelector(recruterSelector);
   const token = useSelector(tokenSelector);
   const errorChangePassword = useSelector(authErrorSelector);
-  const loading = useSelector(loadinChangesSelector)
+  const loading = useSelector(loadinChangesSelector);
 
   const [values, setValues] = useState({
     password: "",

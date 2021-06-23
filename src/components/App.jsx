@@ -3,7 +3,7 @@ import React from "react";
 import Dashboard from "./Dashboard";
 import Auth from "./Auth";
 import { useSelector } from "react-redux";
-import { recruterSelector } from '../redux/selectors/auth'
+import { recruterSelector } from "../redux/selectors/auth";
 
 function App() {
   const recruiter = useSelector(recruterSelector);

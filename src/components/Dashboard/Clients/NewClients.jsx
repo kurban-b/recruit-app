@@ -20,7 +20,7 @@ import { companiesSelector } from "../../../redux/selectors/companies";
 import { Alert } from "@material-ui/lab";
 import { recruterSelector } from "../../../redux/selectors/auth";
 import { addNewClient } from "../../../redux/actions/clients";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
   wrapp: {
@@ -304,7 +304,7 @@ function NewClients({ modalClose }) {
 }
 
 NewClients.propTypes = {
-  modalClose: PropTypes.func.isRequired
-}
+  modalClose: PropTypes.func.isRequired,
+};
 
 export default NewClients;

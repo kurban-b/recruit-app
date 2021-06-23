@@ -14,7 +14,7 @@ const useStayles = makeStyles(() => ({
     padding: "10px 10px 20px 10px",
     boxShadow: "0 0 10px 0 #ccc",
     borderRadius: "10px 10px 0 0",
-    fontFamily: "'Roboto', sans-serif"
+    fontFamily: "'Roboto', sans-serif",
   },
   headerMoth: {
     border: "none",
@@ -32,7 +32,7 @@ const useStayles = makeStyles(() => ({
   },
   card: {
     padding: "20px",
-  }
+  },
 }));
 
 function Calendar() {
@@ -75,7 +75,7 @@ function Calendar() {
     <div className={classes.wrap}>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
-        themeSystem={'standart'}
+        themeSystem={"standart"}
         initialView="dayGridMonth"
         eventClassNames={classes.event}
         viewClassNames={classes.main}

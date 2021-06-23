@@ -13,7 +13,7 @@ import {
 import { Add } from "@material-ui/icons";
 import ModalAddCompany from "./ModalAddCompany";
 import RowCompany from "./RowCompany";
-import { PropTypes } from 'prop-types'
+import { PropTypes } from "prop-types";
 
 const useStyles = makeStyles(() => ({
   companies: {
@@ -44,12 +44,7 @@ function CompaniesList({ companies }) {
       <div className={classes.companies}>
         <List>
           {companies.map((company, index) => {
-            return (
-              <RowCompany
-                company={company}
-                key={index}
-              />
-            );
+            return <RowCompany company={company} key={index} />;
           })}
           <ListItem button onClick={handleModalOpen}>
             <ListItemAvatar>
@@ -70,7 +65,7 @@ function CompaniesList({ companies }) {
 }
 
 CompaniesList.propTypes = {
-  companies: PropTypes.array.isRequired
-}
+  companies: PropTypes.array.isRequired,
+};
 
 export default CompaniesList;

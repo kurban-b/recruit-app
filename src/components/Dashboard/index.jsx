@@ -1,12 +1,12 @@
-import React from 'react'
-import { Grid } from '@material-ui/core'
-import Sidebar from './Sidebar'
-import Main from './Main'
-import Header from './Header/Header'
+import React from "react";
+import { Grid } from "@material-ui/core";
+import Sidebar from "./Sidebar";
+import Main from "./Main";
+import Header from "./Header/Header";
 
-function Dashboard () {
+function Dashboard() {
   return (
-    <div style={{position: "relative"}}>
+    <div style={{ position: "relative" }}>
       <Grid container>
         <Grid item md={3}>
           <Sidebar />
@@ -17,7 +17,7 @@ function Dashboard () {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

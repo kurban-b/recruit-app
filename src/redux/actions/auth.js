@@ -4,7 +4,7 @@ export const startLogin = (login, password, checkbox) => {
       type: "auth/login/start",
     });
 
-    fetch("http://localhost:5000/auth", {
+    fetch("/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,7 +47,7 @@ export const registrationStart = (
       type: "auth/registration/start",
     });
 
-    fetch("http://localhost:5000/recruiters", {
+    fetch("/recruiters", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -89,7 +89,7 @@ export const saveChangesAccaunt = (
       type: "recruiters/change/start",
     });
 
-    fetch(`http://localhost:5000/recruiters/${id}`, {
+    fetch(`/recruiters/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -117,7 +117,7 @@ export const changePassword = (id, password, newPassword, token) => {
       type: "recruiters/changePassword/start",
     });
 
-    fetch(`http://localhost:5000/recruiters/${id}`, {
+    fetch(`/recruiters/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

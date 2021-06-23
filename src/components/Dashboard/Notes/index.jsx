@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { notesSelector } from '../../../redux/selectors/notes'
-import Note from './Note'
-import { Button, Dialog, Grid, makeStyles, Typography } from '@material-ui/core'
-import ModalAddNote from './ModalAddNote'
-import { Add } from '@material-ui/icons'
-import { clientsSelector } from '../../../redux/selectors/clients'
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { notesSelector } from "../../../redux/selectors/notes";
+import Note from "./Note";
+import {
+  Button,
+  Dialog,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import ModalAddNote from "./ModalAddNote";
+import { Add } from "@material-ui/icons";
+import { clientsSelector } from "../../../redux/selectors/clients";
 
 const useStyes = makeStyles((theme) => ({
   title: {
@@ -14,26 +20,26 @@ const useStyes = makeStyles((theme) => ({
     fontWeight: 600,
   },
   buttonWrap: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  }
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
 }));
 
-function Notes () {
+function Notes() {
   const classes = useStyes();
-  const notes = useSelector(notesSelector)
-  const clients = useSelector(clientsSelector)
+  const notes = useSelector(notesSelector);
+  const clients = useSelector(clientsSelector);
 
   const [open, setOpen] = useState(false);
 
   const handleModalOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleModalClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -44,21 +50,24 @@ function Notes () {
           </Typography>
         </Grid>
         <Grid item md={4} className={classes.buttonWrap}>
-          <Button variant="contained" color="primary" startIcon={<Add />} onClick={handleModalOpen}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<Add />}
+            onClick={handleModalOpen}
+          >
             Добавить новую заметку
           </Button>
-          <Dialog open={open} onClose={handleModalClose} >
-            <ModalAddNote clients={clients} modalClose={setOpen}/>
+          <Dialog open={open} onClose={handleModalClose}>
+            <ModalAddNote clients={clients} modalClose={setOpen} />
           </Dialog>
         </Grid>
       </Grid>
-      {
-        notes.map((note, index) => {
-          return <Note note={note} key={index}/>
-        })
-      }
+      {notes.map((note, index) => {
+        return <Note note={note} key={index} />;
+      })}
     </div>
-  )
+  );
 }
 
 export default Notes;

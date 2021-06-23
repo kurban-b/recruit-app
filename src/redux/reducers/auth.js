@@ -12,11 +12,11 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingLogin: true,
-        error: false
+        error: false,
       };
     case "auth/login/success":
       if (action.checkbox) {
-        localStorage.setItem("user", JSON.stringify(action.payload))
+        localStorage.setItem("user", JSON.stringify(action.payload));
       }
       return {
         ...state,
@@ -27,63 +27,63 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         error: true,
-        loadingLogin: false
+        loadingLogin: false,
       };
     case "auth/registration/start":
       return {
         ...state,
         error: false,
-        loadingRegistration: true
-      }
+        loadingRegistration: true,
+      };
     case "auth/registration/success":
       if (action.payload.error !== undefined) {
         return {
           ...state,
           loadingRegistration: false,
-          error: true
-        }
+          error: true,
+        };
       }
       if (action.checkbox) {
-        localStorage.setItem("user", JSON.stringify(action.payload))
+        localStorage.setItem("user", JSON.stringify(action.payload));
       }
       return {
         ...state,
         loadingRegistration: false,
-        recruiter: action.payload
-      }
+        recruiter: action.payload,
+      };
     case "auth/logout":
-      localStorage.removeItem('user')
+      localStorage.removeItem("user");
       return {
         ...state,
-        recruiter: {}
-      }
+        recruiter: {},
+      };
     case "recruiters/change/start":
       return {
         ...state,
-        loadingChanges: true
-      }
+        loadingChanges: true,
+      };
     case "recruiters/change/success":
-      if (localStorage.getItem('user') !== undefined) {
-        localStorage.setItem("user", JSON.stringify(action.payload))
+      if (localStorage.getItem("user") !== undefined) {
+        localStorage.setItem("user", JSON.stringify(action.payload));
       }
       return {
         ...state,
         loadingChanges: false,
-        recruiter: action.payload
-      }
+        recruiter: action.payload,
+      };
     case "recruiters/changePassword/start":
       return {
         ...state,
         error: false,
-        loadingChanges: true
-      }
+        loadingChanges: true,
+      };
     case "recruiters/changePassword/success":
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
         loadingChanges: false,
-        error: action.payload
-      }
+        error: action.payload,
+      };
     default:
       return state;
   }

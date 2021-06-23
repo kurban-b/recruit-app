@@ -1,64 +1,64 @@
 export const loadingCompanies = (token) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
-      type: 'companies/load/start'
-    })
+      type: "companies/load/start",
+    });
 
-    fetch('http://localhost:5000/companies', {
-      method: 'GET',
+    fetch("/companies", {
+      method: "GET",
       headers: {
-        "token": token
-      }
+        token: token,
+      },
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         dispatch({
           type: "companies/load/success",
-          payload: json
-        })
-      })
-  }
-}
+          payload: json,
+        });
+      });
+  };
+};
 
 export const addNewCompany = (company, id) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
-      type: 'companies/add/start'
-    })
+      type: "companies/add/start",
+    });
 
-    fetch('http://localhost:5000/companies', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("/companies", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: company,
-        recruiterId: id
-      })
+        recruiterId: id,
+      }),
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         dispatch({
-          type: 'companies/add/success',
-          payload: json
-        })
-      })
-  }
-}
+          type: "companies/add/success",
+          payload: json,
+        });
+      });
+  };
+};
 
 export const deleteCompany = (id) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
-      type: 'companies/delete/start'
-    })
+      type: "companies/delete/start",
+    });
 
-    fetch(`http://localhost:5000/companies/${id}`, {
-      method: 'DELETE'
+    fetch(`/companies/${id}`, {
+      method: "DELETE",
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         dispatch({
-          type: 'companies/delete/success',
-          payload: id
-        })
-      })
-  }
-}
+          type: "companies/delete/success",
+          payload: id,
+        });
+      });
+  };
+};

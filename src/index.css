@@ -1,4 +1,3 @@
-
 @import "~@fullcalendar/daygrid/main.min.css";
 
 * {
@@ -13,7 +12,7 @@ a {
   text-decoration: none;
 }
 
-input[type = email]:invalid {
+input[type="email"]:invalid {
   color: #f65757;
 }
 
@@ -24,7 +23,7 @@ input[type = email]:invalid {
 .avatarButton:hover {
   display: block;
   border-radius: 50%;
-  background-color: rgba(0,0,0,0.56);
+  background-color: rgba(0, 0, 0, 0.56);
   width: 130px;
   height: 120px;
   position: absolute;
