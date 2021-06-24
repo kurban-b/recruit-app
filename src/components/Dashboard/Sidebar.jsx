@@ -50,6 +50,9 @@ const useStyes = makeStyles((theme) => ({
   icon: {
     marginLeft: "15px",
   },
+  subtitle: {
+    color: "#686868",
+  },
 }));
 
 function Sidebar() {
@@ -67,7 +70,13 @@ function Sidebar() {
             className={classes.avatar}
           />
           <div>
-            <Typography variant="subtitle2">{`${recruiter.firstName} ${recruiter.lastName}`}</Typography>
+            <Typography
+              variant="subtitle2"
+              className={classes.name}
+            >{`${recruiter.firstName} ${recruiter.lastName}`}</Typography>
+            <Typography variant="caption" className={classes.subtitle}>
+              HR-менеджер
+            </Typography>
           </div>
         </div>
       </Link>
