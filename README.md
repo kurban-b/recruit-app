@@ -20,7 +20,7 @@
 - React Router;
 - react-transition-group ;
 - prettier / ESLint / prop-types;
-- git / GitHub / Heroku.
+- git / GitHub.
 
 ### Роуты для запросов на фейковый сервер
 
