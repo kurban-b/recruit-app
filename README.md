@@ -1,18 +1,24 @@
 ### Функционал приложения
 
-* Авторизация / Регистрация
-* Добавлени
-*
+- регистрация и авторизация рекрутера;
+- добавление и редактирование данных рекрутера;
+- добавление и удаление соискателей;
+- редактирование данных соискателя;
+- добавление и удаление заметок по соискателю;
+- добавление и удаление собеседований;
+- изменение статуса соискателя;
+- добавление компаний рекрутеру / изменение компании соискателя;
+- календарь с отображением собеседований и возможность их добавления.
 
 
 ### При разработке использовал:
 
-- JavaScript (ES6) / React / Redux.
-- json-server / concurrently - для написания небольшого бэкенда / nodemon.
-- redux-thunk / reselect / redux-logger - организация работы со стейтом;
-- Material-UI / Fullcalendar - оформление и некоторый функционал компонентов;
-- React Router - роутинг и навигация;
-- react-transition-group - анимация компонентов;
+- JavaScript (ES6) / React / Redux;
+- json-server / concurrently / nodemon;
+- redux-thunk / reselect / redux-logger;
+- Material-UI / Fullcalendar / Moment;
+- React Router;
+- react-transition-group ;
 - prettier / ESLint / prop-types;
 - git / GitHub / Heroku.
 
